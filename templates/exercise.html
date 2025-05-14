@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pregnancy Exercise Videos</title>
+  <style>
+    /* Your styles remain unchanged */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f3eafc, #e9dff5);
+      color: #4b3b5a;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #cfa5e5;
+      padding: 40px 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #7b4ca0;
+      background: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      margin: 20px;
+      border: 1px solid #d6b2f0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: #f5eaff;
+      transform: scale(1.03);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .video-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(163, 130, 200, 0.15);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .video-card video {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .video-card h2 {
+      color: #7b4ca0;
+      font-size: 1.5rem;
+      margin: 10px 0 5px;
+    }
+    .video-card p {
+      font-size: 1rem;
+      color: #5c486b;
+      margin-bottom: 15px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 1rem;
+      color: #9479ac;
+    }
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .video-card h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Flask-compatible Back Button -->
+  <a href="{{ url_for('landing_page') }}" class="back-button">
+    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+    Back
+  </a>
+
+  <header>
+    <h1>🤰 Gentle Pregnancy Exercises</h1>
+    <p>Relaxing and Safe Movement for Body and Baby</p>
+  </header>
+
+  <section class="video-grid">
+
+    <!-- Video 1 -->
+    <div class="video-card">
+      <video controls>
+        <source src="{{ url_for('static', filename='first trimester workout.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h2>First Trimester Stretch & Breathe</h2>
+      <p>A calm flow to support early pregnancy changes and reduce fatigue.</p>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-card">
+      <video controls>
+        <source src="{{ url_for('static', filename='second trimester workout.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h2>Second Trimester Energizer</h2>
+      <p>Safe movements to boost circulation, posture, and mood.</p>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-card">
+      <video controls>
+        <source src="{{ url_for('static', filename='third trimester workout.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h2>Third Trimester Gentle Flow</h2>
+      <p>Supportive exercises for late pregnancy comfort and preparation.</p>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-card">
+      <video controls>
+        <source src="{{ url_for('static', filename='fit ball moves.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h2>Fit Ball Moves</h2>
+      <p>Balance, breathing, and core alignment with a fitness ball.</p>
+    </div>
+
+    <!-- Video 5 -->
+    <div class="video-card">
+      <video controls>
+        <source src="{{ url_for('static', filename='35 week perental yoga.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h2>35-Week Prenatal Yoga</h2>
+      <p>Gentle yoga to connect with baby and relieve lower back tension.</p>
+    </div>
+
+  </section>
+
+  <footer>
+    &copy; 2025 Wellness Hub — Supporting You Every Step 🌷
+  </footer>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Pause all other videos when one starts playing
+    const videos = document.querySelectorAll('video');
+    videos.forEach((video) => {
+      video.addEventListener('play', () => {
+        videos.forEach((v) => {
+          if (v !== video) v.pause();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

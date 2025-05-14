@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Users | Admin - Mama's Nest</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff9fd;
+      color: #4b2b63;
+    }
+
+    header {
+      background: linear-gradient(to right, #dcbdf6, #f3e6fc);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: #5a3c75;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #732b9d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f6ebfc;
+      color: #4b2b63;
+    }
+
+    tr:hover {
+      background-color: #f9f2fc;
+    }
+
+    .action-btn {
+      padding: 5px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .delete-btn {
+      background-color: #ffb3b3;
+      color: #900;
+    }
+
+    .disable-btn {
+      background-color: #fddede;
+      color: #b45f06;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Manage Users</h1>
+    <nav>
+      <a href="/admin-dashboard">Home</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Registered Users</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ 'Disabled' if user.role == 'disabled' else 'Active' }}</td>
+            <td>
+              {% if user.role == 'disabled' %}
+                <form action="{{ url_for('enable_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                  <button class="action-btn">Enable</button>
+                </form>
+              {% else %}
+                <form action="{{ url_for('disable_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                  <button class="action-btn disable-btn">Disable</button>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      
+    </table>
+  </div>
+</body>
+</html>

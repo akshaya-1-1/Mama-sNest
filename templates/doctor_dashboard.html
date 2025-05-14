@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Dashboard | Mama's Nest</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8fe;
+      color: #4c3062;
+    }
+
+    header {
+      background: linear-gradient(to right, #e9cffa, #f7efff);
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #4b2b63;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #5a3c75;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #743997;
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      padding: 20px 25px;
+      background: #f8ecfc;
+      border-left: 5px solid #b46ed8;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .section:hover {
+      background: #f1e2f6;
+    }
+
+    .section h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #732b9d;
+    }
+
+    .section p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .section a {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 15px;
+      color: #8c3cb7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .section a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      background: #f5e2f6;
+      font-size: 14px;
+      color: #6e5483;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Doctor Dashboard | Mama's Nest</h1>
+    <nav>
+      
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Welcome, Doctor 👩‍⚕️</h2>
+
+    <div class="section">
+      <h3>📅 View Appointments</h3>
+      <p>See your upcoming appointments with patients.</p>
+      <a href="{{ url_for('doctor_appointments') }}">Check Appointments</a>
+    </div>
+
+    <div class="section">
+      <h3>🧍‍♀️ Patient Records</h3>
+      <p>View patient history, notes, and appointment details.</p>
+      <a href="{{ url_for('doctor_patients') }}">📋 My Patients</a>
+
+    </div>
+
+    <div class="section">
+      <h3>📤 Upload Resources</h3>
+      <p>Share wellness tips, guides, or documents with users.</p>
+      <a href="/doctor/resources">Upload Content</a>
+    </div>
+
+    <div class="section">
+      <h3>🩺 Update Profile</h3>
+      <p>Edit your details, availability, and specialization information.</p>
+      <a href="{{ url_for('doctor_profile') }}">✏️ Edit Profile</a>
+    </div>
+
+    <div class="section">
+      <h3>✉️ Messages</h3>
+      <p>Read and respond to user queries or messages.</p>
+      <a href="/doctor/messages">View Messages</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Mama's Nest — Doctor Panel 💜
+  </footer>
+</body>
+</html>

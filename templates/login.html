@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Mama's Nest</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .logged-in-msg {
+      color: #4b2b63;
+      background-color: #f7e9fc;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #d4a2e0;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      margin-right:10%;
+    }
+
+    .logged-in-msg a {
+      color: #8c3cb7;
+      font-weight: bold;
+      text-decoration: none;
+      margin-left: 1105px;
+    }
+
+    .logged-in-msg a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+
+    <!-- ✅ Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flashes">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- ✅ Already Logged In Message -->
+    {% if session.get('user_id') %}
+      <div class="logged-in-msg">
+        You are already logged in. 
+        <a href="{{ url_for('logout') }}">Logout?</a>
+      </div>
+    {% endif %}
+
+    <!-- ✅ Login Form -->
+    <form action="{{ url_for('login') }}" method="POST">
+      <input type="email" name="email" placeholder="Email" required class="input-box">
+    
+      <div class="password-container">
+        <input type="password" name="password" id="password" placeholder="Password" required class="input-box">
+        <i id="eyeIcon" class="fa fa-eye" onclick="togglePassword()"></i>
+      </div>
+    
+      <p class="forgot-password"><a href="{{ url_for('forgot_password') }}">Forgot password?</a></p>
+      <button class="btn" type="submit">Login</button>
+
+      <div class="links">
+        <p>New to Mama's Nest? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- 👁️ Toggle Password Visibility -->
+  <script>
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const eyeIcon = document.getElementById("eyeIcon");
+
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordField.type = "password";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+      }
+    }
+  </script>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Appointments | Mama's Nest</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8fe;
+      margin: 0;
+      padding: 0;
+      color: #4b2b63;
+    }
+
+    header {
+      background: linear-gradient(to right, #e9cffa, #f7efff);
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #4b2b63;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(160, 120, 180, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #743997;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e5d0f3;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f3e6fc;
+      color: #732b9d;
+    }
+
+    tr:hover {
+      background-color: #f9efff;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 25px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .progress-bar.pending {
+      background: linear-gradient(90deg, #ffd86b, #ffc107);
+    }
+
+    .progress-bar.accepted {
+      background: linear-gradient(90deg, #6bcf6b, #28a745);
+    }
+
+    .progress-bar.rejected {
+      background: linear-gradient(90deg, #ff8a8a, #e53935);
+    }
+
+    .progress-bar.cancelled {
+      background: linear-gradient(90deg, #bdbdbd, #757575);
+    }
+
+    .cancel-btn {
+      background-color: crimson;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .cancel-btn:hover {
+      background-color: darkred;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: underline;
+      color: #743997;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f3e4f9;
+      font-size: 14px;
+      color: #6e5483;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📅 My Appointments</h1>
+</header>
+
+<div class="container">
+  <h2>Upcoming Appointments</h2>
+
+  {% if appointments %}
+  <table>
+  <thead>
+    <tr>
+      <th>Doctor</th>
+      <th>Specialization</th>
+      <th>Hospital</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in appointments %}
+    <tr>
+      <td>Dr. {{ a.doctor_name }}</td>
+      <td>{{ a.specialization }}</td>
+      <td>{{ a.hospital_name }}</td>
+      <td>{{ a.appointment_date }}</td>
+      <td>{{ a.appointment_time }}</td>
+      <td>
+        {% if a.status == 'Accepted' %}
+          <div class="progress-bar accepted">Accepted</div>
+        {% elif a.status == 'Rejected' %}
+          <div class="progress-bar rejected">Rejected</div>
+        {% elif a.status == 'Cancelled' %}
+          <div class="progress-bar cancelled">Cancelled</div>
+        {% else %}
+          <div class="progress-bar pending">Pending</div>
+        {% endif %}
+      </td>
+      <td>
+        {% if a.status == 'Pending' %}
+        <form action="{{ url_for('cancel_appointment', appointment_id=a.id) }}" method="POST" style="display:inline;">
+          <button type="submit" class="cancel-btn">Cancel</button>
+        </form>
+        {% else %}
+          <span style="color: #999;">-</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+  {% else %}
+    <p style="text-align:center;">You haven’t booked any appointments yet.</p>
+  {% endif %}
+
+  <a href="{{ url_for('appointment') }}" class="back-link">← Back to Book Appointment</a>
+</div>
+
+<footer>
+  &copy; 2025 Mama's Nest — User Panel 💜
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Profile | Admin - Mama's Nest</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9fd;
+      color: #4b2b63;
+      padding: 40px;
+    }
+
+    .profile-container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #732b9d;
+      margin-bottom: 25px;
+    }
+
+    .profile-photo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .profile-photo img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #dcbdf6;
+    }
+
+    .profile-info p {
+      font-size: 1rem;
+      margin-bottom: 14px;
+    }
+
+    .profile-info span {
+      font-weight: bold;
+      color: #5c2d91;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #7d4b91;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <h2>👩‍⚕️ Doctor Profile</h2>
+
+    <div class="profile-photo">
+  {% if doctor.photo_path %}
+    <img src="{{ url_for('static', filename='uploads/' ~ doctor.photo_path) }}" alt="Doctor Photo">
+  {% else %}
+    <img src="{{ url_for('static', filename='default-avatar.png') }}" alt="Doctor Photo">
+  {% endif %}
+</div>
+
+
+    <div class="profile-info">
+      <p><span>ID:</span> {{ doctor.id }}</p>
+      <p><span>Name:</span> {{ doctor.name }}</p>
+      <p><span>Email:</span> {{ doctor.email }}</p>
+      <p><span>Status:</span> {{ doctor.status|capitalize }}</p>
+      <p><span>Verification:</span> {{ 'Verified' if doctor.is_verified else 'Not Verified' }}</p>
+      <p><span>Specialization:</span> {{ doctor.specialization or 'Not provided' }}</p>
+      <p><span>Experience:</span> {{ doctor.experience or 0 }} years</p>
+      <p><span>Hospital:</span> {{ doctor.hospital_name or 'Not provided' }}</p>
+      {% if doctor.license_path %}
+        <p><span>License:</span> 
+          <a href="{{ url_for('static', filename='uploads/' ~ doctor.license_path) }}" target="_blank">View License</a>
+        </p>
+      {% endif %}
+    </div>
+
+    <a href="{{ url_for('manage_doctors') }}" class="back-link">← Back to Doctor List</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Appointments | Mama's Nest</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8fe;
+      margin: 0;
+      padding: 0;
+      color: #4b2b63;
+    }
+    header {
+      background: linear-gradient(to right, #e9cffa, #f7efff);
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #4b2b63;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(160, 120, 180, 0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #743997;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e5d0f3;
+      text-align: left;
+    }
+    th {
+      background-color: #f3e6fc;
+      color: #732b9d;
+    }
+    tr:hover {
+      background-color: #f9efff;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f3e4f9;
+      font-size: 14px;
+      color: #6e5483;
+      margin-top: 50px;
+    }
+    .action-btn {
+      background-color: #8c3cb7;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      margin-right: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .action-btn:hover {
+      background-color: #732b9d;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-link a {
+      color: #8c3cb7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Doctor Appointments</h1>
+  <div class="back-link">
+    <a href="{{ url_for('doctor_dashboard') }}">Home</a>
+  </div>
+</header>
+
+<div class="container">
+  <h2>Your Appointments</h2>
+
+  {% if appointments %}
+  <table>
+    <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Notes</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in appointments %}
+      <tr>
+        <td>{{ a.patient_name }}</td>
+        <td>{{ a.patient_email }}</td>
+        <td>{{ a.appointment_date }}</td>
+        <td>{{ a.appointment_time }}</td>
+        <td>{{ a.notes or '—' }}</td>
+        <td>
+          {% if a.status == 'Accepted' %}
+            <span style="color: green; font-weight: bold;">Accepted</span>
+          {% elif a.status == 'Rejected' %}
+            <span style="color: red; font-weight: bold;">Rejected</span>
+          {% elif a.status == 'Cancelled' %}
+            <span style="color: gray; font-weight: bold;">Cancelled</span>
+          {% else %}
+            <span style="color: orange; font-weight: bold;">Pending</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if a.status == 'Pending' %}
+          <form method="post" action="{{ url_for('doctor_appointments') }}" style="display:inline;">
+            <input type="hidden" name="appointment_id" value="{{ a.id }}">
+            <button type="submit" name="action" value="accept" class="action-btn">Accept</button>
+            <button type="submit" name="action" value="reject" class="action-btn" style="background-color: crimson;">Reject</button>
+          </form>
+          {% else %}
+            -
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p style="text-align:center;">No appointments found.</p>
+  {% endif %}
+</div>
+
+<footer>
+  &copy; 2025 Mama's Nest — Doctor Panel 💜
+</footer>
+
+</body>
+</html>

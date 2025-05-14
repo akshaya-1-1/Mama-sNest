@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Orders | Mama's Nest</title>
+  <style>
+    body { background: #f6edfa; color: #392b5d; font-family: 'Nunito', 'Poppins', sans-serif; min-height: 100vh; margin: 0;}
+    nav { background: #b57edc; padding: 18px 36px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(90, 60, 120, 0.07);}
+    nav .brand { color: #fff; font-weight: 700; font-size: 1.4rem; letter-spacing: 1px;}
+    nav a { color: #fff; text-decoration: none; margin-left: 18px; font-size: 1rem; transition: color 0.2s;}
+    nav a:hover { color: #f3e8ff;}
+    .container { max-width: 700px; margin: 40px auto; padding: 0 20px;}
+    h2 { color: #7c3aed; font-size: 2.2rem; font-weight: 800; margin-bottom: 28px; display: flex; align-items: center; gap: 10px;}
+    .orders-list { list-style: none; padding: 0; margin: 0;}
+    .orders-list li { border: 1px solid #e9d5ff; border-radius: 8px; padding: 18px 20px; margin-bottom: 18px; background: #faf5ff;}
+    .orders-list li strong { color: #7c3aed;}
+    .order-actions a { background: #ede9fe; color: #7c3aed; border-radius: 5px; padding: 6px 14px; text-decoration: none; font-size: 0.95rem; font-weight: 600; margin-left: 10px; transition: background 0.2s, color 0.2s;}
+    .order-actions a:hover { background: #d8b4f8; color: #392b5d;}
+    .back-link { display: inline-block; margin-top: 24px; background: #f3e8ff; color: #7c3aed; border-radius: 6px; padding: 10px 20px; text-decoration: none; font-size: 1rem; font-weight: 600; transition: background 0.2s, color 0.2s;}
+    .back-link:hover { background: #d8b4f8; color: #392b5d;}
+    @media (max-width: 600px) { .container { padding: 0 6px; } h2 { font-size: 1.3rem; } }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</head>
+<body>
+  <nav>
+    <div class="brand">Mama's Nest</div>
+    <div>
+      <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> Home</a>
+      <a href="{{ url_for('my_account') }}"><i class="fas fa-user-circle"></i> My Account</a>
+      <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h2><span>🛍️</span> My Orders</h2>
+    {% if orders %}
+      <ul class="orders-list">
+        {% for order in orders %}
+          <li>
+            <p><strong>Order ID:</strong> {{ order.id }}</p>
+            <p><strong>Date:</strong> {{ order.order_date.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Status:</strong> <span>{{ order.status }}</span></p>
+            <p><strong>Total:</strong> ₹{{ order.total_amount }}</p>
+            <div class="order-actions">
+              <a href="{{ url_for('order_details', order_id=order.id) }}">View Details</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p style="color:#888;">No orders found.</p>
+    {% endif %}
+    <a href="{{ url_for('my_account') }}" class="back-link"><i class="fas fa-arrow-left"></i> Back to Account</a>
+  </div>
+</body>
+</html>

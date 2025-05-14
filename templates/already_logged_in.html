@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <title>You're Logged In</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container" style="text-align:center; margin-top: 43px;margin-left:700px;">
+    <h2>Hello, {{ name }}! 👋</h2>
+    <p>You’re already logged in!.</p>
+    <a href="{{ url_for('logout') }}" class="cta-button">Logout</a>
+  </div>
+</body>
+</html>

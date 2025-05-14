@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mama's Nest</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashstyle.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">Mama's Nest</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About Us</a></li>
+        <li><a href="{{ url_for('services') }}">Services</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="content-area">
+    <!-- Left Text Section -->
+    <div class="left-text">
+      <h2>Because You Deserve the Best Care</h2>
+      <p>
+        Mama’s Nest is your cozy corner for personalized care during pregnancy. We offer expert guidance, emotional support, and thoughtful tools — all in one place.
+      </p>
+      <a class="cta-button" href="{{ url_for('services') }}">Explore Services</a>
+    </div>
+  </div>
+
+  <footer>&copy; 2025 Mama's Nest. All rights reserved.</footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Your Profile</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff9fd;
+      margin: 0;
+      padding: 0;
+      color: #4b2b63;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #f4d9ff, #fbefff);
+      width: 100%;
+      text-align: center;
+      padding: 20px 10px;
+      margin-bottom: 30px;
+    }
+    header h2 {
+      font-size: 32px;
+      color: #732b9d;
+      margin: 0;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(180, 135, 200, 0.15);
+      max-width: 500px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    form input {
+      font-size: 15px;
+      padding: 12px 15px;
+      margin: 12px 0;
+      border: 1px solid #c8a4d4;
+      border-radius: 8px;
+    }
+
+    form button {
+      background-color: #a764cb;
+      color: white;
+      padding: 14px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #944fb6;
+    }
+    form select {
+  font-size: 15px;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: 1px solid #c8a4d4;
+  border-radius: 8px;
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Complete Your Profile</h2>
+  </header>
+
+  <form method="POST">
+    <select name="specialization" required>
+      <option value="">Select Specialization</option>
+      <option value="Obstetricians" {% if doctor.specialization == 'Obstetricians' %}selected{% endif %}>Obstetricians</option>
+      <option value="Gynecologists" {% if doctor.specialization == 'Gynecologists' %}selected{% endif %}>Gynecologists</option>
+      <option value="Pediatricians" {% if doctor.specialization == 'Pediatricians' %}selected{% endif %}>Pediatricians</option>
+      <option value="Nutritionists" {% if doctor.specialization == 'Nutritionists' %}selected{% endif %}>Nutritionists</option>
+    </select>
+    
+    <input type="text" name="experience" placeholder="Experience (e.g., 10 years)" value="{{ doctor.experience or '' }}" required>
+    <input type="text" name="availability_days" placeholder="Available Days (e.g., Monday, Wednesday, Friday)" value="{{ doctor.availability_days or '' }}" required>
+    <input type="text" name="availability_time" placeholder="Available Time (e.g., 10:00 - 14:00)" value="{{ doctor.availability_time or '' }}" required>
+    <input type="text" name="hospital_name" placeholder="Hospital Name" value="{{ doctor.hospital_name or '' }}" required>
+    <button type="submit">Save Profile</button>
+  </form>
+
+</body>
+</html>

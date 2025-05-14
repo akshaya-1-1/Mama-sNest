@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Music Track</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f8f4fa; color: #4b2b63; }
+    .container { max-width: 500px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; }
+    h2 { color: #743997; text-align: center; }
+    label { font-weight: bold; }
+    input, textarea { width: 100%; margin-bottom: 15px; padding: 8px; border-radius: 5px; border: 1px solid #dcbdf6; }
+    button { background: #743997; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #a16ae8; }
+    a { color: #743997; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Music Track</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <label>Title:</label>
+      <input type="text" name="title" required>
+      <label>Description:</label>
+      <textarea name="description"></textarea>
+      <label>Audio File:</label>
+      <input type="file" name="audio" accept="audio/*" required>
+      <button type="submit">Add Music Track</button>
+    </form>
+    <a href="{{ url_for('manage_wellness') }}">Back</a>
+  </div>
+</body>
+</html>

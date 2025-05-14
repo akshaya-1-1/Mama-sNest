@@ -1,0 +1,152 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Mama's Nest</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #fff9fd;
+        color: #4b2b63;
+      }
+
+      header {
+        background: linear-gradient(to right, #dcbdf6, #f3e6fc);
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 32px;
+        color: #4b2b63;
+      }
+
+      nav a {
+        margin: 0 12px;
+        color: #5a3c75;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #743997;
+      }
+
+      .section {
+        margin-bottom: 30px;
+        padding: 20px 25px;
+        background: #f8ecfc;
+        border-left: 5px solid #b46ed8;
+        border-radius: 10px;
+        transition: background 0.3s ease;
+      }
+
+      .section:hover {
+        background: #f1e2f6;
+      }
+
+      .section h3 {
+        margin: 0 0 10px;
+        font-size: 20px;
+        color: #732b9d;
+      }
+
+      .section p {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .section a {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 15px;
+        color: #8c3cb7;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .section a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+        background: #f5e2f6;
+        font-size: 14px;
+        color: #6e5483;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Admin Dashboard | Mama's Nest</h1>
+      <nav>
+        <a href="/logout">Logout</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2>Welcome, Admin 💼</h2>
+
+      <div class="section">
+        <h3>🧑‍⚕️ Manage Users & Doctors</h3>
+        <p>View, modify or verify registered users and doctors.</p>
+        <a href="{{ url_for('manage_users') }}">Manage Users</a>
+        <br>
+        <a href="{{ url_for('manage_doctors') }}">Manage Doctors</a>
+      </div>
+
+      <div class="section">
+        <h3>📩 Contact Messages</h3>
+        <p>Review and respond to user contact messages.</p>
+        <a href="/admin/messages">View Messages</a>
+      </div>
+
+      <div class="section">
+        <h3>📝 Wellness Content</h3>
+        <p>Add or update health and wellness content and resources.</p>
+        <a href="{{ url_for('manage_wellness') }}">Manage Wellness</a>
+      </div>
+
+      <div class="section">
+        <h3>🛒 Manage Marketplace</h3>
+        <p>Add or edit maternity and wellness products in the store.</p>
+        <a href="{{ url_for('admin_product') }}">Go to Marketplace</a>
+      </div>
+
+      <div class="section">
+        <h3>📊 Reports & Analytics</h3>
+        <p>Monitor user growth and doctor activity across the platform.</p>
+        <a href="{{ url_for('admin_report') }}">View Reports</a>
+      </div>
+
+      <div class="section">
+        <h3>🔐 Settings</h3>
+        <p>Update admin credentials, roles, or system preferences.</p>
+        <a href="/admin/settings">Update Settings</a>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2025 Mama's Nest — Admin Panel 💜
+    </footer>
+  </body>
+  </html>

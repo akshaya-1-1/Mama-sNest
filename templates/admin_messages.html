@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Inbox | Mama's Nest</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fdf7ff;
+      padding: 40px;
+      color: #4b2b63;
+    }
+
+    h2 {
+      text-align: center;
+      color: #7d4b91;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #e9d7f4;
+    }
+
+    tr:hover {
+      background-color: #f3e9fb;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📥 Contact Messages</h2><center>
+  <a href="/admin-dashboard">Home</a></center>
+
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Message</th>
+      <th>Submitted At</th>
+    </tr>
+    {% for msg in messages %}
+    <tr>
+      <td>{{ msg.id }}</td>
+      <td>{{ msg.name }}</td>
+      <td>{{ msg.email }}</td>
+      <td>{{ msg.message }}</td>
+      <td>{{ msg.submitted_at }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</body>
+</html>

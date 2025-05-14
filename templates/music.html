@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relaxation & Meditation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f3eafc, #e9dff5);
+      color: #4b3b5a;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #cfa5e5;
+      padding: 40px 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #7b4ca0;
+      background: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      margin: 20px;
+      border: 1px solid #d6b2f0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #f5eaff;
+      transform: scale(1.03);
+    }
+
+    .audio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .audio-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(163, 130, 200, 0.15);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .audio-card h2 {
+      color: #7b4ca0;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .audio-card p {
+      font-size: 1rem;
+      color: #5c486b;
+      margin-bottom: 15px;
+    }
+
+    .audio-card audio {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 1rem;
+      color: #9479ac;
+    }
+
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .audio-card h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="{{ url_for('landing_page') }}" class="back-button">
+    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+    Back
+  </a>
+
+  <header>
+    <h1>🧘‍♀️ Relaxation & Meditation</h1>
+    <p>Peaceful Moments for You and Your Baby</p>
+  </header>
+
+  <section class="audio-grid">
+
+    <!-- Flute Music -->
+    <div class="audio-card">
+      <h2>🎶 Calming Flute</h2>
+      <p>Soothing Krishna flute melody to ease the mind and body.</p>
+      <audio controls>
+        <source src="{{ url_for('static', filename='relaxing krishna flute.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="audio-card">
+      <h2>🌸 Flute for Inner Peace</h2>
+      <p>Melodic tones for emotional balance and mindfulness.</p>
+      <audio controls>
+        <source src="{{ url_for('static', filename='samuri.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- Breathing Meditation -->
+    <div class="audio-card">
+      <h2>🌬️ Guided Breathing</h2>
+      <p>A short guided session to calm the nerves and slow the breath.</p>
+      <audio controls>
+        <source src="{{ url_for('static', filename='meditation.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="audio-card">
+      <h2>🌊 Healing Waves</h2>
+      <p>Gentle ocean-inspired breathing aid to relax your senses.</p>
+      <audio controls>
+        <source src="{{ url_for('static', filename='healing-waves.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- Sleep Sounds -->
+    <div class="audio-card">
+      <h2>🌙 Sleep Soundscape</h2>
+      <p>Dreamy tones to help you drift into deep sleep.</p>
+      <audio controls>
+        <source src="{{ url_for('static', filename='sleep-music.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- Bonding Meditation -->
+    <div class="audio-card">
+      <h2>👶 Baby Bonding</h2>
+      <p>Connect with your baby through loving awareness and quiet focus.</p>
+      <audio controls>
+        <source src="{{ url_for('static', filename='kids.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+  </section>
+
+  <footer>
+    &copy; 2025 Wellness Hub — Supporting You Every Step 🌷
+  </footer>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <script>
+    lucide.createIcons();
+
+    // Pause all audio except the one currently playing
+    const allAudios = document.querySelectorAll("audio");
+    allAudios.forEach(audio => {
+      audio.addEventListener("play", () => {
+        allAudios.forEach(other => {
+          if (other !== audio) other.pause();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

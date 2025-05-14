@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Mama's Nest</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    #emailMessage, #passwordMessage {
+      font-size: 0.9rem;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+    #license-upload, #photo-upload {
+      display: none;
+    }
+  </style>
+
+  <script>
+    let emailTimer = null;
+
+    function debounceEmailCheck() {
+      clearTimeout(emailTimer);
+      emailTimer = setTimeout(checkEmail, 600);
+    }
+
+    function checkEmail() {
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("emailMessage");
+
+      if (!email.includes("@") || email.length < 6) {
+        message.textContent = "";
+        return;
+      }
+
+      fetch(`/check-email?email=${encodeURIComponent(email)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.exists) {
+            message.innerHTML = "⚠️ Email already registered! <a href='/login'>Login here</a>";
+            message.style.color = "red";
+          } else {
+            message.textContent = "✅ Email is available";
+            message.style.color = "green";
+          }
+        })
+        .catch(error => {
+          console.error("Error checking email:", error);
+          message.textContent = "⚠️ Error checking email";
+          message.style.color = "red";
+        });
+    }
+
+    function validatePassword() {
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm_password").value;
+      const message = document.getElementById("passwordMessage");
+
+      if (confirmPassword.length === 0) {
+        message.textContent = "";
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        message.textContent = "❌ Passwords do not match!";
+        message.style.color = "red";
+      } else {
+        message.textContent = "✅ Passwords match";
+        message.style.color = "green";
+      }
+    }
+
+    function toggleDoctorFields() {
+      const role = document.getElementById("role").value;
+      document.getElementById("license-upload").style.display = role === "doctor" ? "block" : "none";
+      document.getElementById("photo-upload").style.display = role === "doctor" ? "block" : "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      toggleDoctorFields();
+      document.getElementById("role").addEventListener("change", toggleDoctorFields);
+    });
+  </script>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Sign Up</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <p class="flash {{ category }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('signup') }}" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      <input type="text" name="name" placeholder="Full Name" required autocomplete="off" />
+
+      <input type="email" id="email" name="email" placeholder="Email" required autocomplete="off" oninput="debounceEmailCheck()" />
+      <p id="emailMessage"></p>
+
+      <input type="password" id="password" name="password" placeholder="Password" required autocomplete="off" />
+      <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required autocomplete="off" onkeyup="validatePassword()" />
+      <p id="passwordMessage"></p>
+
+      <label for="role">Register as:</label>
+      <select name="role" id="role" required>
+        <option value="user">User</option>
+        <option value="doctor">Doctor</option>
+      </select>
+
+      <!-- Show only if doctor -->
+      <div id="license-upload">
+        <label for="license">Upload Medical License (PDF/Image):</label>
+        <input type="file" name="license" accept=".pdf,.jpg,.jpeg,.png" />
+      </div>
+
+      <div id="photo-upload">
+        <label for="photo">Upload Profile Photo:</label>
+        {{ form.photo }}
+      </div>
+      <button class="btn" type="submit">Sign Up</button>
+    </form>
+
+    <div class="links">
+      <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    </div>
+  </div>
+</body>
+</html>

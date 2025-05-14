@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pregnancy E-Book: Calm & Devotion</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f3eafc, #e9dff5);
+      color: #4b3b5a;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #cfa5e5;
+      padding: 50px 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: fadeInDown 1.2s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.4rem;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 30px 0 0 30px;
+      padding: 12px 24px;
+      background-color: #e6d3f2;
+      color: #5a3978;
+      border: 2px solid #c6a0df;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 5px 12px rgba(191, 163, 218, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #d6bdea;
+      color: #3f2b59;
+      box-shadow: 0 8px 16px rgba(143, 113, 179, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(185, 159, 214, 0.2);
+      animation: fadeInUp 1.2s ease-in-out;
+      
+    }
+
+    .story {
+  background-color: #f3eafc; /* Match the sidebar background */
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  border-left: 5px solid #b287d5;
+  box-shadow: none; /* Optional: Remove white box effect */
+  display: none;
+}
+
+    .story h2 {
+      color: #7b4ca0;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .story p {
+      line-height: 1.8;
+      font-size: 1.7rem;
+      color: #5c486b;
+    }
+
+    .story img {
+      width: 20%;
+      height: 50%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .moral {
+  margin-top: 24px;
+  padding: 12px 20px;
+  background-color: #ede3f5;
+  border-left: 4px solid #a273c3;
+  border-radius: 8px;
+  font-style: italic;
+  font-size: 1rem;           /* Smaller than story text */
+  color: #7b4ca0;            /* Lighter/different color */
+  line-height: 1.5;
+  box-shadow: 0 2px 8px rgba(185,159,214,0.08);
+}
+    .controls {
+      text-align: center;
+      margin-top: 30px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .controls button {
+      background-color: #a271c7;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      margin: 10px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .controls button:hover {
+      background-color: #925ec0;
+      transform: scale(1.05);
+    }
+
+    
+    @keyframes fadeIn {
+      from {opacity: 0;} to {opacity: 1;}
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes storyFade {
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.4rem;
+      }
+      .story h2 {
+        font-size: 1.5rem;
+      }
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f3eafc, #e9dff5);
+      color: #4b3b5a;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    header {
+      background-color: #cfa5e5;
+      padding: 20px 10px 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.4rem;
+    }
+    .main-screen {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -45%); /* ✅ was -50%, now -45% for slight downward shift */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+
+    
+
+.main-screen h2 {
+  font-size: 2.5rem;
+  color: #7b4ca0;
+  margin-bottom: 20px; /* just enough space above the button */
+}
+
+    
+    .main-screen button {
+      background-color: #a271c7;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.3rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .main-screen button:hover {
+      background-color: #925ec0;
+      transform: scale(1.05);
+    }
+   .layout {
+  display: flex;
+  align-items: stretch; /* Ensures equal height */
+  max-width: 1200px;
+  margin: 30px auto;
+  min-height: 100%; /* allows inner items to stretch */
+  display: flex;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 30px auto;
+  min-height: 500px; 
+}
+
+.sidebar {
+  width: 1600px; /* or whatever width looks good */
+  background-color: transparent;
+  border-radius: 18px;
+  box-shadow: 0 10px 20px rgba(185, 159, 214, 0.2);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+    .sidebar h3 {
+      color: #7b4ca0;
+      margin-bottom: 15px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+    .sidebar a {
+      color: #5c486b;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .sidebar a:hover {
+      color: #7b4ca0;
+    }
+    .content {
+      flex-grow: 1;
+      padding: 0 30px;
+  background-color: #f3eafc; /* Match sidebar */
+}
+
+    
+    .story {
+      background: white;
+      padding: 25px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      border-left: 5px solid #b287d5;
+      box-shadow: 0 10px 25px rgba(185, 159, 214, 0.2);
+      display: none;
+    }
+    .story img {
+      max-width: 30%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .story h2 {
+      color: #7b4ca0;
+      margin-bottom: 10px;
+    }
+    .story p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    .moral {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ede3f5;
+      border-left: 4px solid #a273c3;
+      border-radius: 8px;
+      font-style: italic;
+    }
+    .story-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .story-controls button,
+    .back-btn {
+      background-color: #a271c7;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .back-btn {
+      margin: 20px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+  </style>
+</head>
+<body>
+  <header style="background-color: #cfa5e5; padding: 5px 5px 5px; text-align: center; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+  <h1 style="font-size: 3rem; margin-bottom: 10px; font-weight: bold;">
+    <span style="font-size:2.5rem;">🌸</span> Divine Whispers
+  </h1>
+  <p style="font-size: 1.4rem; margin-bottom: 18px;">
+    Devotional & Uplifting Stories for Pregnancy
+  </p>
+  <a href="{{ url_for('landing_page') }}" style="
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #5c3a84;  /* Darker shade */
+    background: transparent;
+    padding: 10px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(185,159,214,0.10);
+    transition: background 0.2s, color 0.2s;">
+    &larr; Back to Wellness Hub
+</a>
+
+</header>
+
+  <div class="main-screen" id="startPage">
+    <h2>Welcome to Your Calm & Sacred Storytime</h2>
+    <button onclick="startStories()">📖 Start the Stories</button>
+  </div>
+
+  <div class="layout" id="storyPage" style="display: none;">
+    <div class="sidebar">
+      <h3>Stories</h3>
+      <ul>
+        {% for story in stories %}
+          <li>
+            <a href="#" onclick="showStory({{ loop.index0 }}); return false;">
+              {{ loop.index }}. {{ story.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="content">
+  {% for story in stories %}
+  <div class="story" id="story{{ loop.index0 }}">
+    <h2>{{ loop.index }}. {{ story.title }}</h2>
+    {% if story.image_path %}
+      <img src="{{ url_for('static', filename=story.image_path) }}" alt="{{ story.title }}" />
+    {% endif %}
+    <p>{{ story.content }}</p>
+    {% if story.description %}  <!-- This now correctly matches your database column -->
+      <div class="moral">🌿 {{ story.description }}</div>  <!-- Display the description field -->
+    {% endif %}
+    <div class="story-controls">
+      {% if not loop.first %}
+        <button onclick="prevStory({{ loop.index0 - 1 }})">Previous</button>
+      {% endif %}
+      {% if not loop.last %}
+        <button onclick="nextStory({{ loop.index0 + 1 }})">Next</button>
+      {% else %}
+        <button onclick="location.href='{{ url_for('landing_page') }}'">🏁 End</button>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+  </div>
+
+ 
+
+  <script>
+    // Get the number of stories from Jinja
+    const totalStories = {{ stories|length }};
+    let currentStory = 0;
+
+    function startStories() {
+      document.getElementById("startPage").style.display = "none";
+      document.getElementById("storyPage").style.display = "flex";
+      showStory(currentStory);
+    }
+
+    function showStory(id) {
+      for (let i = 0; i < totalStories; i++) {
+        document.getElementById("story" + i).style.display = "none";
+      }
+      const target = document.getElementById("story" + id);
+      if (target) {
+        target.style.display = "block";
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        currentStory = id;
+      }
+    }
+
+    function nextStory(nextId) {
+      if (nextId < totalStories) {
+        showStory(nextId);
+      }
+    }
+
+    function prevStory(prevId) {
+      if (prevId >= 0) {
+        showStory(prevId);
+      }
+    }
+
+    // Enable sidebar link functionality
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebarLinks = document.querySelectorAll(".sidebar a");
+      sidebarLinks.forEach((link, index) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          showStory(index);
+        });
+      });
+      // Optionally show the first story if user refreshes on storyPage
+      // showStory(0);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us | Mama's Nest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background-color: #fffafc;
+      color: #4b375a;
+      line-height: 1.6;
+    }
+
+    header {
+      position: relative;
+      padding: 25px 40px;
+      background: linear-gradient(to right, #caa1dd, #e9d7f4);
+      background-image: url('/static/banner-flowers.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid #e6cdeb;
+      height: 90px;
+    }
+
+    .header-left {
+      position: absolute;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 34px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #4b2b63;
+      font-weight: bold;
+    }
+
+    .header-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      font-family: 'Georgia', serif;
+      color: #7d4b91;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        height: auto;
+        padding: 30px 20px;
+        text-align: center;
+      }
+
+      .header-left, .header-center {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+    }
+
+    .back-link {
+      padding: 20px 40px 0;
+      font-size: 16px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #a75d9b;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .back-link a:hover {
+      color: #843e94;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 0 20px;
+      background-color: #fdf7ff;
+      border: 1px solid #e4ccef;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(174, 145, 191, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      color: #7e3d97;
+      margin-top: 40px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      padding: 30px 20px;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: 'Georgia', serif;
+      background-color: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      background-color: #a75d9b;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #8e4483;
+    }
+
+    footer {
+      background-color: #f2e8f7;
+      color: #7d6488;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">Mama's Nest</div>
+    <div class="header-center">Contact Us</div>
+  </header>
+
+  <!-- Back Link -->
+  <div class="back-link">
+    <a href="{{ url_for('dashboard') }}">← Back to Home</a>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="container">
+    <h2>We’d love to hear from you!</h2>
+
+    <form method="POST" action="{{ url_for('contact') }}">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" placeholder="Your Name" required>
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" placeholder="you@example.com" required>
+
+      <label for="message">Message</label>
+      <textarea name="message" id="message" placeholder="Type your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="contact-details" style="text-align: center; margin-bottom: 40px; font-size: 15px; color: #5e4b65;">
+        <p>📧 Email us directly: <strong>support@mamasnest.com</strong></p>
+        <p>📞 Call us: <strong>+91 987 567 8900</strong></p>
+        <p>🕒 Available: <strong>Mon - Sun, 9am – 5pm</strong></p>
+        <p>📍 Address: 123 Times square complex,udupi,57423</p>
+      </div>
+      
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Mama's Nest — All rights reserved 💜
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align login box to right */
+    background-image: url("/static/girl.jpg");
+    background-size: cover;             /* ✅ Make image cover the screen properly */
+    background-repeat: no-repeat;
+    background-position: left center;   /* ✅ Focus image to the left */
+    background-color: #f8f8f8;
+    position: relative;
+}
+
+.login-container {
+    width: 35%;
+    min-height: 75vh; /* Optional: Add soft background */
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin-left:65%; /* Space from right */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.forgot-container
+{
+    margin-left:1000px;
+}
+.tagline {
+    font-size: 2em;
+    font-family: 'Georgia', serif;
+    color: #6d4c41;
+    position: absolute;
+    left: 30%;
+    top: 90%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.login-container h2 {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 25px;
+}
+input {
+    width: 80%;
+    padding: 18px;
+    margin: 20px 0 10px 0; /* Adjusted margin */
+    border: 1px solid #333;
+    border-radius: 10px;
+    font-size: 1.3em;
+    background: rgba(255, 255, 255, 0);
+    color: #333;
+}
+.forgot-password {
+    font-size: 1em;
+    text-align: left;
+    margin: 10px 10% 30px 28px;
+}
+.forgot-password a {
+    color: #a75d9b;
+    text-decoration: none;
+}
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+.btn {
+    width: 85%;
+    background-color: #a75d9b;
+    color: white;
+    padding: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+.btn:hover {
+    background-color: #8e4483;
+}
+.links {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+.links a {
+    color: #a75d9b;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
+.links a:hover {
+    text-decoration: underline;
+}
+.input-box {
+    width: 80%;
+    padding: 18px;
+    margin: 20px 0 10px 0;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 1.3em;
+    background: rgba(255, 255, 255, 0);
+    color: #333;
+    box-sizing: border-box;
+  }
+  
+  /* Password Input with Eye Icon */
+  .password-container {
+    position: relative;
+    width: 80%;
+    margin: 20px auto 10px auto;
+  }
+  
+  .password-container input {
+    width: 100%;
+    padding: 18px;
+    padding-right: 45px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 1.3em;
+    background: rgba(255, 255, 255, 0);
+    color: #333;
+  }
+  
+  .password-container i {
+    position: absolute;
+    top: 50%;
+    right: 19px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #333;
+    font-size: 1.2em;
+  }
+  

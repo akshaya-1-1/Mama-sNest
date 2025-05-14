@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment - Mama's Nest</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #FAF5FF;
+      padding: 40px;
+      color: #392B5D;
+    }
+    .form-box {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    h2 {
+      text-align: center;
+      color: #5C2D91;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .payment-method-details {
+      display: none;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: #7e57c2;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    .btn-submit:hover {
+      background: #5C2D91;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Complete Your Order</h2>
+  <form method="POST" action="{{ url_for('confirm_order') }}">
+    <label>Full Name</label>
+    <input type="text" name="fullname" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Phone Number</label>
+    <input type="text" name="phone" minlength=10 maxlength=10 required>
+
+    <label>Address</label>
+    <textarea name="address" required></textarea>
+
+    <label>Payment Method</label>
+    <select name="payment_method" id="payment_method" onchange="togglePaymentFields()" required>
+      <option value="">-- Select Method --</option>
+      <option value="cod">Cash on Delivery</option>
+      <option value="upi">UPI</option>
+      <option value="card">Credit/Debit Card</option>
+    </select>
+
+    <!-- UPI -->
+    <div class="payment-method-details" id="upi-fields">
+      <label>UPI ID</label>
+      <input type="text" name="upi_id" placeholder="example@upi">
+    </div>
+
+    <!-- Card -->
+    <div class="payment-method-details" id="card-fields">
+      <label>Card Number</label>
+      <input type="text" name="card_number" placeholder="1234 5678 9012 3456">
+      <label>Expiry Date</label>
+      <input type="text" name="card_expiry" placeholder="MM/YY">
+      <label>CVV</label>
+      <input type="password" name="card_cvv" placeholder="123">
+    </div>
+
+    <button type="submit" class="btn-submit">Confirm Order</button>
+  </form>
+</div>
+
+<script>
+  function togglePaymentFields() {
+    const method = document.getElementById('payment_method').value;
+    document.getElementById('upi-fields').style.display = method === 'upi' ? 'block' : 'none';
+    document.getElementById('card-fields').style.display = method === 'card' ? 'block' : 'none';
+  }
+</script>
+
+</body>
+</html>

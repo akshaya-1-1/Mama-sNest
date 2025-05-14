@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Appointment | Mama's Nest</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #732b9d;
+      --secondary: #f4d9ff;
+      --accent: #a764cb;
+      --light: #fff9fd;
+      --highlight: #fbefff;
+      --text: #4b2b63;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Poppins', sans-serif;
+      background-color: var(--light);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+    }
+
+    header {
+  background: linear-gradient(135deg, var(--secondary), var(--highlight));
+  text-align: center;
+  padding: 30px 10px 80px;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23fff9fd' opacity='.25'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' fill='%23fff9fd' opacity='.5'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%23fff9fd'/%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  color: var(--primary);
+  margin: 0;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(115, 43, 157, 0.1);
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #855b9d;
+  max-width: 700px;
+  margin: 15px auto 0;
+}
+
+
+    .container {
+      max-width: 1200px;
+      margin: -30px auto 60px;
+      padding: 0 20px;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .category-tab {
+      padding: 10px 20px;
+      background: white;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 500;
+      border: 1px solid #e0bff3;
+      transition: all 0.3s ease;
+    }
+
+    .category-tab.active,
+    .category-tab:hover {
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      color: white;
+      border-color: transparent;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-top: 40px;
+      padding-left: 15px;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      margin: 30px 0 50px;
+    }
+
+    .carousel-container {
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .doctor-carousel {
+      display: flex;
+      gap: 25px;
+      overflow-x: auto;
+      padding: 15px 10px;
+      scroll-behavior: smooth;
+    }
+
+    .doctor-card {
+      flex: 0 0 300px;
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(160, 120, 180, 0.1);
+      text-align: center;
+      border: 1px solid #e8c6f0;
+    }
+
+    .doctor-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--highlight);
+    }
+
+    .doctor-specialty {
+      background: var(--highlight);
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin: 10px 0;
+    }
+
+    .doctor-details {
+      text-align: left;
+      font-size: 0.95rem;
+      margin: 15px 0;
+    }
+
+    .doctor-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .doctor-detail i {
+      margin-right: 8px;
+      color: var(--accent);
+    }
+
+    .book-btn {
+      background: linear-gradient(to right, var(--accent), #9b5fca);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: white;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .arrow.left { left: -25px; }
+    .arrow.right { right: -25px; }
+
+    .form-popup {
+      display: none;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 10px 30px rgba(140, 100, 160, 0.15);
+      border: 1px solid #e5d0f3;
+    }
+
+    .form-title {
+      text-align: center;
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-popup input,
+    .form-popup textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .submit-btn, .cancel-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      color: white;
+    }
+
+    .cancel-btn {
+      background: white;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+    /* 🔍 Soft, minimal scrollbar for doctor carousel */
+.doctor-carousel::-webkit-scrollbar {
+  height: 6px; /* small height for subtlety */
+}
+
+.doctor-carousel::-webkit-scrollbar-track {
+  background: transparent; /* no background */
+}
+
+.doctor-carousel::-webkit-scrollbar-thumb {
+  background: rgba(115, 43, 157, 0.2); /* light lavender thumb */
+  border-radius: 10px;
+}
+
+.doctor-carousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(115, 43, 157, 0.3); /* slight dark on hover */
+}
+.back-link {
+      padding: 20px 40px 0;
+      font-size: 16px;
+      margin-right:0px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #a75d9b;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .back-link a:hover {
+      color: #843e94;
+      text-decoration: underline;
+    }
+    .flash-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffe6e6;
+  color: #4b2b63;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  display: none;
+  border-left: 5px solid #e53935;
+}
+.flash-popup.success {
+  background-color: #e6ffec;
+  border-left: 5px solid #2e7d32;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏥 Book Appointment</h1>
+    <p>Schedule with trusted specialists for every stage of your journey</p>
+    <div class="back-link">
+    <a href="{{ url_for('dashboard') }}">← Back to Home</a>
+  </div>
+  </header>
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div id="flashMessageBox"
+         class="flash-popup"
+         data-category="{{ messages[0][0] }}"
+         data-message="{{ messages[0][1] }}">
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.category-tab');
+      const doctorCards = document.querySelectorAll('.doctor-card');
+  
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove 'active' class from all tabs
+          tabs.forEach(t => t.classList.remove('active'));
+          // Add 'active' class to the clicked tab
+          tab.classList.add('active');
+  
+          const selectedCategory = tab.getAttribute('data-category');
+  
+          doctorCards.forEach(card => {
+            if (selectedCategory === 'all' || card.classList.contains(selectedCategory)) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+  
+  <div class="container">
+    <div class="category-tabs">
+      <div class="category-tab active" data-category="all">All Specialists</div>
+      <div class="category-tab" data-category="obstetricians">Obstetricians</div>
+      <div class="category-tab" data-category="gynecologists">Gynecologists</div>
+      <div class="category-tab" data-category="pediatricians">Pediatricians</div>
+      <div class="category-tab" data-category="nutritionists">Nutritionists</div>
+    </div>
+    
+
+    <h2 class="section-title"><i class="fas fa-user-md"></i> Our Specialists</h2>
+
+    <div class="carousel-wrapper">
+      <button class="arrow left" onclick="scrollDoctors(-1)">&#8592;</button>
+      <div class="carousel-container">
+        <div class="doctor-carousel" id="doctorCarousel">
+          {% for doc in doctors %}
+          <div class="doctor-card {{ doc.specialization | lower | replace(' ', '-') }}">
+            <img src="{{ url_for('static', filename=doc.photo_path) }}" alt="Dr. {{ doc.name }}" class="doctor-img">
+
+            <h3>Dr. {{ doc.name }}</h3>
+            <div class="doctor-specialty">{{ doc.specialization }}</div>
+            <div class="doctor-details">
+              <div class="doctor-detail"><i class="fas fa-hospital"></i>{{ doc.hospital_name }}</div>
+              <div class="doctor-detail"><i class="fas fa-briefcase"></i>{{ doc.experience }}</div>
+              <div class="doctor-detail"><i class="fas fa-calendar-alt"></i>{{ doc.availability_days }}</div>
+              <div class="doctor-detail"><i class="fas fa-clock"></i>{{ doc.availability_time }}</div>
+            </div>
+            <button class="book-btn"
+  onclick="showForm('{{ doc.id }}', '{{ doc.name }}', '{{ doc.availability_days }}', '{{ doc.availability_time }}', '{{ doc.booked_slots|default('') }}')">
+  <i class="fas fa-calendar-check"></i> Book Appointment
+</button>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <button class="arrow right" onclick="scrollDoctors(1)">&#8594;</button>
+    </div>
+    
+
+    <div id="appointmentForm" class="form-popup">
+      <h3 class="form-title">Book Appointment with <span id="doctorName">Doctor</span></h3>
+      <form action="/appointment" method="POST">
+        <input type="hidden" name="doctor_id" id="doctorId">
+
+        <div class="form-group">
+          <label for="name">Your Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" maxlength="10" required>
+
+        </div>
+
+        <div class="form-group">
+          <label for="datePicker">Date</label>
+          <input type="date" id="datePicker" name="date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="timePicker">Time</label>
+          <select id="timePicker" name="time" required>
+  <option value="">-- Select a Time Slot --</option>
+</select>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" rows="4"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" onclick="document.getElementById('appointmentForm').style.display='none'">Cancel</button>
+          <button type="submit" class="submit-btn"><i class="fas fa-calendar-check"></i> Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  let currentWorkingDays = [];
+  let doctorStartTime = '';
+  let doctorEndTime = '';
+  let bookedSlots = [];
+
+  const dateInput = document.getElementById('datePicker');
+  const timeSelect = document.getElementById('timePicker');
+  const dayMap = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+
+  // Restrict to future dates only
+  window.onload = function () {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  };
+
+  dateInput.addEventListener('change', function () {
+    const selected = new Date(this.value);
+    const selectedDay = dayMap[selected.getDay()];
+
+    if (!currentWorkingDays.includes(selectedDay)) {
+      alert("Doctor is not available on " + selectedDay);
+      this.value = '';
+      return;
+    }
+
+    generateTimeSlots();
+  });
+
+  function generateTimeSlots() {
+    timeSelect.innerHTML = '<option value="">-- Select a Time Slot --</option>'; // Reset options
+
+    if (!doctorStartTime || !doctorEndTime || !dateInput.value) return;
+
+    const start = parseTime(doctorStartTime);
+    const end = parseTime(doctorEndTime);
+
+    for (let t = new Date(start); t <= end; t.setMinutes(t.getMinutes() + 30)) {
+      const timeStr = formatTime(t);
+      const slotKey = dateInput.value + '_' + timeStr;
+
+      const option = document.createElement('option');
+      option.value = timeStr;
+      option.textContent = timeStr;
+
+      if (bookedSlots.includes(slotKey)) {
+        option.disabled = true;
+        option.textContent += ' (Booked)';
+      }
+
+      timeSelect.appendChild(option);
+    }
+  }
+
+  function parseTime(timeStr) {
+    const [hour, minute] = timeStr.split(':');
+    const d = new Date();
+    d.setHours(parseInt(hour), parseInt(minute), 0, 0);
+    return d;
+  }
+
+  function formatTime(date) {
+    const h = date.getHours().toString().padStart(2, '0');
+    const m = date.getMinutes().toString().padStart(2, '0');
+    return `${h}:${m}`;
+  }
+
+  function showForm(id, name, days, timeRange, bookedStr) {
+    document.getElementById('doctorId').value = id;
+    document.getElementById('doctorName').innerText = name;
+    document.getElementById('appointmentForm').style.display = 'block';
+    document.getElementById('appointmentForm').scrollIntoView({ behavior: 'smooth' });
+
+    currentWorkingDays = days.toLowerCase().split(',').map(d => d.trim());
+    bookedSlots = bookedStr ? bookedStr.split(';') : [];
+
+    if (timeRange.includes('-')) {
+      [doctorStartTime, doctorEndTime] = timeRange.split('-').map(t => t.trim());
+    }
+
+    document.querySelector('#appointmentForm form').reset();
+    timeSelect.innerHTML = '<option value="">-- Select a Time Slot --</option>'; // Clear time
+  }
+
+  function scrollDoctors(direction) {
+    const container = document.getElementById("doctorCarousel");
+    const scrollAmount = container.clientWidth * 0.8;
+    container.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+  }
+
+  const tabs = document.querySelectorAll('.category-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function () {
+      tabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+
+
+  
+  {% if session.get('role') == 'user' %}
+  <div style="text-align: center; margin: 60px 0 30px;">
+    <a href="{{ url_for('my_appointments') }}"
+       style="
+         font-size: 1.1rem;
+         font-weight: 600;
+         color: var(--primary);
+         text-decoration: none;
+         padding: 12px 24px;
+         border: 2px solid var(--accent);
+         border-radius: 30px;
+         background-color: var(--highlight);
+         transition: all 0.3s ease;">
+      📅 My Appointments
+    </a>
+  </div>
+{% endif %}
+<script>
+  window.onload = function () {
+    const flashBox = document.getElementById('flashMessageBox');
+    if (flashBox) {
+      const category = flashBox.getAttribute('data-category');
+      const message = flashBox.getAttribute('data-message');
+      flashBox.textContent = message;
+      if (category === 'success') {
+        flashBox.classList.add('success');
+      }
+      flashBox.style.display = 'block';
+
+      // Auto-dismiss after 4 seconds
+      setTimeout(() => {
+        flashBox.style.display = 'none';
+      }, 4000);
+    }
+  };
+</script>
+
+
+</body>
+</html>

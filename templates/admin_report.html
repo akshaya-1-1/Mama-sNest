@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Reports | Mama's Nest</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9fd;
+      margin: 0;
+      padding: 20px;
+      color: #4b2b63;
+    }
+
+    h2 {
+      text-align: center;
+      color: #732b9d;
+    }
+
+    .chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f8ecfc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📊 Reports & Analytics</h2><center>
+  <a href="/admin-dashboard">Home</a></center>
+
+  <div class="chart-container">
+    <canvas id="userGrowthChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="doctorActivityChart"></canvas>
+  </div>
+
+  <script>
+    // User Growth Chart
+    const ctxUser = document.getElementById('userGrowthChart').getContext('2d');
+    new Chart(ctxUser, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        datasets: [{
+          label: 'User Signups',
+          data: [50, 75, 150, 200, 250],
+          fill: false,
+          borderColor: '#a75d9b',
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          title: {
+            display: true,
+            text: 'Monthly User Signups'
+          }
+        }
+      }
+    });
+
+    // Doctor Activity Chart
+    const ctxDoctor = document.getElementById('doctorActivityChart').getContext('2d');
+    new Chart(ctxDoctor, {
+      type: 'bar',
+      data: {
+        labels: ['Dr. A', 'Dr. B', 'Dr. C', 'Dr. D'],
+        datasets: [{
+          label: 'Appointments Handled',
+          data: [10, 20, 30, 15],
+          backgroundColor: ['#dcbdf6', '#f3e6fc', '#a75d9b', '#cba0e3']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          title: {
+            display: true,
+            text: 'Doctor Activity'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

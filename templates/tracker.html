@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pregnancy Tracker & Reminders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #f3e8ff; /* Light lavender */
+    }
+  </style>
+</head>
+<body class="text-gray-800 font-sans">
+
+  <div class="max-w-3xl mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold text-purple-700 mb-6 text-center">🤰 Pregnancy Tracker & Reminder</h2>
+
+    <!-- Tracker -->
+    <div class="bg-white rounded-xl shadow p-6 mb-8">
+      <h3 class="text-xl font-semibold text-purple-600 mb-2">📅 Pregnancy Week Tracker</h3>
+      <label class="block text-sm text-gray-600 mb-1">Enter Due Date:</label>
+      <input type="date" id="dueDate" class="w-full border px-3 py-2 rounded-lg mb-4 focus:ring-2 focus:ring-purple-400" />
+
+      <div id="weekDisplay" class="text-lg font-medium text-gray-700"></div>
+    </div>
+
+    <!-- Reminders -->
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-xl font-semibold text-purple-600 mb-4">🔔 Set Reminders</h3>
+      <form id="reminderForm" class="space-y-3">
+        <input type="text" id="reminderText" placeholder="e.g., Take vitamins"
+               class="w-full border px-3 py-2 rounded-lg focus:ring-2 focus:ring-purple-400" />
+        <input type="date" id="reminderDate"
+               class="w-full border px-3 py-2 rounded-lg focus:ring-2 focus:ring-purple-400" />
+        <button type="submit"
+                class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg shadow">
+          Add Reminder
+        </button>
+      </form>
+
+      <ul id="reminderList" class="mt-6 space-y-3"></ul>
+    </div>
+  </div>
+
+  <script>
+  // Format date to dd-mm-yy
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear()).slice(-2);
+    return `${day}-${month}-${year}`;
+  }
+
+  // Pregnancy Week Tracker
+  const dueDateInput = document.getElementById("dueDate");
+  const weekDisplay = document.getElementById("weekDisplay");
+
+  dueDateInput.addEventListener("change", () => {
+    const dueDate = new Date(dueDateInput.value);
+    const today = new Date();
+    const conceptionDate = new Date(dueDate.getTime() - 280 * 24 * 60 * 60 * 1000);
+    const diff = today - conceptionDate;
+    const weeks = Math.floor(diff / (7 * 24 * 60 * 60 * 1000));
+
+    if (weeks >= 0 && weeks <= 40) {
+      weekDisplay.textContent = `You are currently in Week ${weeks} of your pregnancy.`;
+    } else if (weeks < 0) {
+      weekDisplay.textContent = "Your pregnancy hasn't started yet.";
+    } else {
+      weekDisplay.textContent = "You have passed your due date.";
+    }
+  });
+
+  // Reminder Functionality
+  const reminderForm = document.getElementById("reminderForm");
+  const reminderList = document.getElementById("reminderList");
+  const reminderText = document.getElementById("reminderText");
+  const reminderDate = document.getElementById("reminderDate");
+
+  let reminders = [];
+
+  reminderForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = reminderText.value.trim();
+    const date = reminderDate.value;
+
+    if (text && date) {
+      reminders.push({ text, date });
+      renderReminders();
+      reminderForm.reset();
+    }
+  });
+
+  function renderReminders() {
+    reminderList.innerHTML = "";
+    reminders.forEach((reminder, index) => {
+      const li = document.createElement("li");
+      li.className = "bg-purple-100 p-4 rounded-lg flex justify-between items-center";
+
+      li.innerHTML = `
+        <div>
+          <p class="font-medium">${reminder.text}</p>
+          <p class="text-sm text-gray-600">On: ${formatDate(reminder.date)}</p>
+        </div>
+        <button type="button" onclick="deleteReminder(${index})" class="text-red-500 hover:text-red-700">
+          🗑
+        </button>
+      `;
+      reminderList.appendChild(li);
+    });
+  }
+
+  window.deleteReminder = function(index) {
+    reminders.splice(index, 1);
+    renderReminders();
+  }
+</script>
+
+</body>
+</html>

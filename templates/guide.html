@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama's Nest | Complete Pregnancy Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #732b9d;
+      --secondary: #f4d9ff;
+      --accent: #d6a5f4;
+      --text: #4b2b63;
+      --light: #fff9fd;
+      --highlight: #fbefff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--secondary), var(--highlight));
+      text-align: center;
+      padding: 40px 20px 70px;
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      color: var(--primary);
+      text-shadow: 1px 1px 3px rgba(115, 43, 157, 0.1);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #5e4b65;
+      max-width: 700px;
+      margin: 15px auto 0;
+    }
+
+    .header-decoration {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23fff9fd' opacity='.25'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' fill='%23fff9fd' opacity='.5'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%23fff9fd'/%3E%3C/svg%3E");
+      background-size: cover;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: -30px auto 60px;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    /* Ribbon Sections */
+    .ribbon-section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 40px;
+      position: relative;
+      border-left: 5px solid var(--accent);
+      box-shadow: 0 5px 15px rgba(115, 43, 157, 0.05);
+    }
+
+    .ribbon-section h2 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-top: 0;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+    }
+
+    .ribbon-section h2 i {
+      margin-right: 15px;
+      color: var(--accent);
+    }
+
+    /* Timeline Style */
+    .timeline-container {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background-color: var(--accent);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1.5px;
+    }
+
+    .milestone {
+      padding: 10px 40px;
+      position: relative;
+      background-color: white;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .milestone::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid var(--primary);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .left::after {
+      right: -12px;
+    }
+
+    .right::after {
+      left: -12px;
+    }
+
+    .milestone-content {
+      padding: 20px;
+      background-color: var(--highlight);
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .milestone-content h3 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .milestone-week {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    /* Panel Sections */
+    .panel-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .panel {
+      flex: 1;
+      min-width: 250px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(115, 43, 157, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .panel:hover {
+      transform: translateY(-5px);
+    }
+
+    .panel-header {
+      background: linear-gradient(to right, var(--secondary), var(--highlight));
+      padding: 15px;
+      color: var(--primary);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .panel-header i {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    /* Delivery Types Section */
+    .delivery-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .delivery-type {
+      flex: 1;
+      min-width: 250px;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(115, 43, 157, 0.1);
+      border-left: 4px solid var(--accent);
+    }
+
+    .delivery-type h3 {
+      color: var(--primary);
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .delivery-type h3 i {
+      margin-right: 10px;
+    }
+
+    /* Tool Section */
+    .tool-section {
+      background: linear-gradient(135deg, var(--highlight), white);
+      padding: 40px;
+      border-radius: 15px;
+      margin: 50px 0;
+      text-align: center;
+      border: 2px dashed var(--accent);
+    }
+
+    .tool-section h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .calculator {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(115, 43, 157, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: var(--text);
+      text-align: left;
+    }
+
+    input[type="date"], select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      background: white;
+    }
+
+    button {
+      background: linear-gradient(to right, var(--primary), #8a4daf);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(115, 43, 157, 0.3);
+      width: 100%;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #8a4daf, var(--primary));
+      box-shadow: 0 6px 15px rgba(115, 43, 157, 0.4);
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      border-left: 4px solid var(--primary);
+      display: none;
+    }
+
+    /* List Styles */
+    .pretty-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .pretty-list li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 12px;
+    }
+
+    .pretty-list li::before {
+      content: "•";
+      color: var(--primary);
+      font-size: 24px;
+      position: absolute;
+      left: 0;
+      top: -5px;
+    }
+
+    /* Baby Size Comparison */
+    .comparison-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .comparison-item {
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .comparison-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--highlight);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    /* Myth vs Fact */
+    .myth-fact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .myth-fact {
+      flex: 1;
+      min-width: 250px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 3px 10px rgba(115, 43, 157, 0.1);
+    }
+
+    .myth {
+      color: #d14b4b;
+      font-weight: bold;
+    }
+
+    .fact {
+      color: #4ba14b;
+      font-weight: bold;
+    }
+
+    footer {
+      background: linear-gradient(to right, #5e4b65, #4b2b63);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .milestone {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .milestone::after {
+        left: 21px;
+      }
+      
+      .left::after, .right::after {
+        left: 21px;
+      }
+      
+      .right {
+        left: 0;
+      }
+    }
+    .back-link {
+      padding: 20px 40px 0;
+      font-size: 16px;
+      margin-right:0px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #a75d9b;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .back-link a:hover {
+      color: #843e94;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🤰 Mama's Nest Pregnancy Guide</h1>
+    <p>Gentle guidance for your beautiful journey to motherhood</p>
+    <div class="header-decoration"></div>
+    <div class="back-link">
+    <a href="{{ url_for('dashboard') }}">← Back to Home</a>
+  </div>
+  </header>
+
+  <main>
+    <!-- Timeline Section -->
+    <div class="ribbon-section">
+      <h2><i class="fas fa-baby"></i> Pregnancy Milestones Timeline</h2>
+      <div class="timeline-container">
+        <div class="timeline">
+          <div class="milestone left">
+            <div class="milestone-content">
+              <div class="milestone-week">Week 4-5</div>
+              <h3>Positive Pregnancy Test</h3>
+              <p>Baby's neural tube begins forming, which will become brain and spine</p>
+            </div>
+          </div>
+          <div class="milestone right">
+            <div class="milestone-content">
+              <div class="milestone-week">Week 8</div>
+              <h3>First Ultrasound</h3>
+              <p>Baby's heartbeat can be detected, major organs begin developing</p>
+            </div>
+          </div>
+          <div class="milestone left">
+            <div class="milestone-content">
+              <div class="milestone-week">Week 12</div>
+              <h3>End of First Trimester</h3>
+              <p>Risk of miscarriage decreases significantly, nausea often improves</p>
+            </div>
+          </div>
+          <div class="milestone right">
+            <div class="milestone-content">
+              <div class="milestone-week">Week 20</div>
+              <h3>Anatomy Scan</h3>
+              <p>Detailed ultrasound to check baby's development and often reveal gender</p>
+            </div>
+          </div>
+          <div class="milestone left">
+            <div class="milestone-content">
+              <div class="milestone-week">Week 28</div>
+              <h3>Third Trimester Begins</h3>
+              <p>Baby's kicks become stronger, glucose screening test performed</p>
+            </div>
+          </div>
+          <div class="milestone right">
+            <div class="milestone-content">
+              <div class="milestone-week">Week 37+</div>
+              <h3>Full Term</h3>
+              <p>Baby could arrive any day now! Final preparations for birth</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Baby Size Comparison -->
+    <div class="ribbon-section">
+      <h2><i class="fas fa-ruler-combined"></i> Baby Size Comparison</h2>
+      <div class="comparison-container">
+        <div class="comparison-item">
+          <div class="comparison-icon"><i class="fas fa-seedling"></i></div>
+          <div>Weeks 4-8</div>
+          <strong>Poppy Seed to Raspberry</strong>
+        </div>
+        <div class="comparison-item">
+          <div class="comparison-icon"><i class="fas fa-lemon"></i></div>
+          <div>Weeks 9-12</div>
+          <strong>Lime to Plum</strong>
+        </div>
+        <div class="comparison-item">
+          <div class="comparison-icon"><i class="fas fa-apple-alt"></i></div>
+          <div>Weeks 13-16</div>
+          <strong>Peach to Avocado</strong>
+        </div>
+        <div class="comparison-item">
+          <div class="comparison-icon"><i class="fas fa-carrot"></i></div>
+          <div>Weeks 17-24</div>
+          <strong>Sweet Potato to Corn</strong>
+        </div>
+        <div class="comparison-item">
+          <div class="comparison-icon"><i class="fas fa-egg"></i></div>
+          <div>Weeks 25-40+</div>
+          <strong>Eggplant to Watermelon</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery Types Section -->
+    <div class="ribbon-section">
+      <h2><i class="fas fa-baby-carriage"></i> Delivery Options</h2>
+      <div class="delivery-types">
+        <div class="delivery-type">
+          <h3><i class="fas fa-baby"></i> Vaginal Delivery</h3>
+          <ul class="pretty-list">
+            <li>Most common and natural method</li>
+            <li>Typically shorter recovery time</li>
+            <li>May include episiotomy if needed</li>
+            <li>Can use pain relief options</li>
+          </ul>
+        </div>
+        <div class="delivery-type">
+          <h3><i class="fas fa-procedures"></i> Cesarean Section</h3>
+          <ul class="pretty-list">
+            <li>Surgical delivery through abdomen</li>
+            <li>Planned or emergency procedure</li>
+            <li>Longer recovery period</li>
+            <li>Used for high-risk pregnancies</li>
+          </ul>
+        </div>
+        <div class="delivery-type">
+          <h3><i class="fas fa-syringe"></i> Induced Labor</h3>
+          <ul class="pretty-list">
+            <li>Medically started labor</li>
+            <li>Used when pregnancy continues past due date</li>
+            <li>Methods include Pitocin or breaking waters</li>
+            <li>Can lead to faster, more intense contractions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel Sections -->
+    <div class="panel-section">
+      <div class="panel">
+        <div class="panel-header">
+          <i class="fas fa-heartbeat"></i> Health Essentials
+        </div>
+        <div class="panel-body">
+          <ul class="pretty-list">
+            <li>Prenatal vitamins with folic acid</li>
+            <li>Balanced diet with extra 300 calories/day</li>
+            <li>Stay hydrated (8-10 glasses water daily)</li>
+            <li>Safe exercise (walking, swimming, yoga)</li>
+            <li>7-9 hours of sleep nightly</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="panel">
+        <div class="panel-header">
+          <i class="fas fa-calendar-check"></i> Important Appointments
+        </div>
+        <div class="panel-body">
+          <ul class="pretty-list">
+            <li>First prenatal visit (8 weeks)</li>
+            <li>NT Scan (11-14 weeks)</li>
+            <li>Anatomy scan (20 weeks)</li>
+            <li>Glucose test (24-28 weeks)</li>
+            <li>Group B strep test (36 weeks)</li>
+            <li>Weekly visits after 36 weeks</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="panel">
+        <div class="panel-header">
+          <i class="fas fa-book-medical"></i> Must-Know Info
+        </div>
+        <div class="panel-body">
+          <ul class="pretty-list">
+            <li>Emergency contact numbers</li>
+            <li>Hospital bag checklist</li>
+            <li>Labor signs to watch for</li>
+            <li>Pain management options</li>
+            <li>Postpartum recovery plan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Due Date Calculator -->
+    <div class="tool-section">
+      <h2><i class="fas fa-calculator"></i> Pregnancy Calculator</h2>
+      <div class="calculator">
+        <label for="lmp">First day of your last period:</label>
+        <input type="date" id="lmp">
+        
+        <label for="method">Conception method:</label>
+        <select id="method">
+          <option value="natural">Natural conception</option>
+          <option value="ivf">IVF/Fertility treatment</option>
+        </select>
+        
+        <button onclick="calculateDueDate()">Calculate Due Date</button>
+        <div id="due-date-result" class="result"></div>
+      </div>
+    </div>
+
+    <!-- Myth vs Fact -->
+    <div class="ribbon-section">
+      <h2><i class="fas fa-lightbulb"></i> Myth vs Fact</h2>
+      <div class="myth-fact-container">
+        <div class="myth-fact">
+          <p><span class="myth">Myth:</span> You shouldn't exercise while pregnant</p>
+          <p><span class="fact">Fact:</span> Moderate exercise is beneficial unless your doctor advises against it</p>
+        </div>
+        <div class="myth-fact">
+          <p><span class="myth">Myth:</span> Heartburn means your baby will have lots of hair</p>
+          <p><span class="fact">Fact:</span> Heartburn is caused by hormones relaxing the esophageal sphincter</p>
+        </div>
+        <div class="myth-fact">
+          <p><span class="myth">Myth:</span> You're eating for two</p>
+          <p><span class="fact">Fact:</span> You only need about 300 extra calories/day in later pregnancy</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Mama's Nest Pregnancy Guide</p>
+    <p><small>Always consult with your healthcare provider about your specific pregnancy needs.</small></p>
+  </footer>
+
+  <script>
+    function calculateDueDate() {
+      const lastPeriod = document.getElementById("lmp").value;
+      const method = document.getElementById("method").value;
+      
+      if (!lastPeriod) {
+        alert("Please enter the first day of your last period");
+        return;
+      }
+      
+      const date = new Date(lastPeriod);
+      let dueDate;
+      
+      if (method === "natural") {
+        // Natural conception: 280 days (40 weeks) from LMP
+        date.setDate(date.getDate() + 280);
+        dueDate = date;
+      } else {
+        // IVF: Typically 266 days from conception/transfer
+        date.setDate(date.getDate() + 266);
+        dueDate = date;
+      }
+      
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const resultElement = document.getElementById("due-date-result");
+      resultElement.innerText = "Your estimated due date is: " + dueDate.toLocaleDateString('en-US', options);
+      resultElement.style.display = "block";
+      
+      // Calculate and show current week
+      const today = new Date();
+      const diffTime = Math.abs(today - new Date(lastPeriod));
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+      const currentWeek = Math.floor(diffDays / 7);
+      
+      if (currentWeek > 0 && currentWeek <= 40) {
+        resultElement.innerHTML += `<br>You are currently at <strong>week ${currentWeek}</strong> of pregnancy.`;
+      }
+    }
+    
+    // Set default date to today for the calculator
+    window.onload = function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById("lmp").value = today;
+    };
+  </script>
+</body>
+</html>

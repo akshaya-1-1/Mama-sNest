@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Music Track</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f8f4fa; color: #4b2b63; }
+    .container { max-width: 500px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; }
+    h2 { color: #743997; text-align: center; }
+    label { font-weight: bold; }
+    input, textarea { width: 100%; margin-bottom: 15px; padding: 8px; border-radius: 5px; border: 1px solid #dcbdf6; }
+    button { background: #743997; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #a16ae8; }
+    a { color: #743997; text-decoration: none; }
+    audio { margin-bottom: 10px; width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Music Track</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <label>Title:</label>
+      <input type="text" name="title" value="{{ music.title }}" required>
+      <label>Description:</label>
+      <textarea name="description">{{ music.description }}</textarea>
+      <label>Current Audio:</label><br>
+      {% if music.audio_path %}
+        <audio controls>
+          <source src="{{ url_for('static', filename=music.audio_path) }}">
+        </audio><br>
+      {% endif %}
+      <label>Change Audio File:</label>
+      <input type="file" name="audio" accept="audio/*">
+      <button type="submit">Update Music Track</button>
+    </form>
+    <a href="{{ url_for('manage_wellness') }}">Back</a>
+  </div>
+</body>
+</html>

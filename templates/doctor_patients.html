@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Patients | Mama's Nest</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8fe;
+      margin: 0;
+      padding: 0;
+      color: #4b2b63;
+    }
+    header {
+      background: linear-gradient(to right, #e9cffa, #f7efff);
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #4b2b63;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(160, 120, 180, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e5d0f3;
+      text-align: left;
+    }
+    th {
+      background-color: #f3e6fc;
+      color: #732b9d;
+    }
+    tr:hover {
+      background-color: #f9efff;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-link a {
+      color: #8c3cb7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🧾 My Patients</h1>
+  <div class="back-link">
+    <a href="{{ url_for('doctor_dashboard') }}">Home</a>
+  </div>
+</header>
+
+<div class="container">
+  {% if patients %}
+    <table>
+      <thead>
+        <tr>
+          <th>Patient Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Last Appointment Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in patients %}
+        <tr>
+          <td>{{ p.patient_name }}</td>
+          <td>{{ p.patient_email }}</td>
+          <td>{{ p.phone }}</td>
+          <td>{{ p.last_appointment }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="text-align:center;">No patients found.</p>
+  {% endif %}
+
+  
+</div>
+
+</body>
+</html>

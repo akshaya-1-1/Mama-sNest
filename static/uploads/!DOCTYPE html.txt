@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamas Nest - Maternity Dresses</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fff9fc;
+        }
+        .maternity-header {
+            background-color: #ffd6eb;
+            padding: 25px;
+            text-align: center;
+        }
+        h1 {
+            color: #d14d8b;
+            font-size: 2.3em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .product-price {
+            color: #d14d8b;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+        .sale-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .view-all {
+            text-align: center;
+            margin: 30px;
+        }
+        .view-all-btn {
+            background-color: #d14d8b;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="maternity-header">
+        <h1>MATERNITY CASUAL WEAR</h1>
+        <p class="subtitle">Comfortable, stylish dresses for every stage of your pregnancy</p>
+    </div>
+
+    <div class="product-grid">
+        <!-- Product A -->
+        <div class="product-card">
+            <img src="images/casualdressA.jpg" alt="Maternity Dress A" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Floral Wrap Maternity Dress</div>
+                <div>
+                    <span class="original-price">$49.99</span>
+                    <span class="product-price">$34.99</span>
+                    <span class="sale-badge">30% OFF</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product B -->
+        <div class="product-card">
+            <img src="images/casualdressB.jpg" alt="Maternity Dress B" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Stretchy Knit Maxi Dress</div>
+                <div>
+                    <span class="original-price">$59.99</span>
+                    <span class="product-price">$41.99</span>
+                    <span class="sale-badge">30% OFF</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repeat for products C through K -->
+        <!-- Product C -->
+        <div class="product-card">
+            <img src="images/casualdressC.jpg" alt="Maternity Dress C" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Denim Shirred Maternity Dress</div>
+                <div class="product-price">$45.99</div>
+            </div>
+        </div>
+
+        <!-- Product D -->
+        <div class="product-card">
+            <img src="images/casualdressD.jpg" alt="Maternity Dress D" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Ruffled Sleeve Tiered Dress</div>
+                <div>
+                    <span class="original-price">$54.99</span>
+                    <span class="product-price">$38.49</span>
+                    <span class="sale-badge">30% OFF</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue with E-K following same pattern -->
+    </div>
+
+    <div class="view-all">
+        <button class="view-all-btn">VIEW ALL MATERNITY DRESSES (11)</button>
+    </div>
+</body>
+</html>

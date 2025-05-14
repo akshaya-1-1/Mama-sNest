@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Our Services | Mama's Nest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background-color: #fffafc;
+      color: #4b375a;
+    }
+
+    header {
+      position: relative;
+      padding: 25px 40px;
+      background: linear-gradient(to right, #caa1dd, #e9d7f4);
+      background-image: url('/static/banner-flowers.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid #e6cdeb;
+      height: 90px;
+    }
+
+    .header-left {
+      position: absolute;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 34px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #4b2b63;
+      font-weight: bold;
+    }
+
+    .header-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      font-family: 'Georgia', serif;
+      color: #7d4b91;
+      font-weight: 500;
+    }
+
+    .back-link {
+      padding: 20px 40px 0;
+      font-size: 16px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #a75d9b;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .back-link a:hover {
+      color: #843e94;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      color: #7e3d97;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+
+    .card {
+      background: #fdf7ff;
+      border: 1px solid #e4ccef;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(174, 145, 191, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(170, 122, 198, 0.2);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      color: #7e3d97;
+      margin: 10px 0 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #5e4b65;
+    }
+
+    footer {
+      background-color: #f2e8f7;
+      color: #7d6488;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+    a.card {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+a.card:hover {
+  text-decoration: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">Mama's Nest</div>
+    <div class="header-center">Our Services</div>
+  </header>
+
+  <!-- Back to Home -->
+  <div class="back-link">
+    <a href="{{ url_for('dashboard') }}">← Back to Home</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h2>Supporting You with Every Click 💜</h2>
+
+    <div class="grid">
+    <a href="{{ url_for('appointment') }}" class="card">
+      <div class="card">
+        <div>📅</div>
+        <h3>Appointment Scheduler</h3>
+        <p>Book doctors by time & specialty.</p>
+      </div>
+    </a>
+    <a href="{{ url_for('landing_page') }}" class="card">
+      <div class="card">
+        <div>🧘‍♀️</div>
+        <h3>Wellness Hub</h3>
+        <p>Access yoga, exercise & calm music.</p>
+      </div>
+    </a>
+    <a href="{{ url_for('ecommerce') }}" class="card">
+      <div class="card">
+        <div>🛍️</div>
+        <h3>Maternity Marketplace</h3>
+        <p>Shop pillows, clothes & more.</p>
+      </div>
+    </a>
+    <a href="{{ url_for('tracker') }}" class="card">
+      <div class="card">
+        <div>📱</div>
+        <h3>Tracker & Reminders</h3>
+        <p>Get scan/test alerts on time.</p>
+      </div>
+    </a>
+      
+  <a href="{{ url_for('guide') }}" class="card">
+      <div class="card">
+        <div>📖</div>
+        <h3>Pregnancy Guide</h3>
+        <p>Understand trimesters & tips.</p>
+      </div>
+  </a>
+    <a href="{{ url_for('moms_circle') }}" class="card">
+      <div class="card">
+        <div>💬</div>
+        <h3>Mom's Circle</h3>
+        <p>Real-time chat with other moms.</p>
+      </div>
+    </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Mama's Nest — Made with care 💜
+  </footer>
+
+</body>
+</html>

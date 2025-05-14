@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mamas Nest - Maternity Essentials</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <style>
+    :root {
+      --primary: #B57EDC;   /* Bright lavender */
+      --secondary: #D8B4F8; /* Soft pastel lavender */
+      --accent: #F3E8FF;    /* Lightest lavender for backgrounds */
+      --dark: #5C2D91;      /* Deep plum for headings */
+      --light: #FAF5FF;     /* Gentle lavender-tinted white */
+      --text: #392B5D;      /* Strong lavender-gray for text */
+    }
+
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Nunito', 'Poppins', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: var(--light);
+    }
+
+    /* Navigation */
+    .top-nav {
+      background-color: var(--primary);
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-small {
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-icons a {
+      color: white;
+      font-size: 1.3rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-icons a:hover {
+      color: var(--dark);
+    }
+
+    /* Header Styles */
+    .main-header {
+      background: linear-gradient(135deg, var(--light), var(--accent));
+      padding: 40px 0 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .main-header::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ffffff" opacity=".25"/></svg>');
+      background-size: cover;
+    }
+    .logo {
+      font-size: 2.8rem;
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    }
+    .tagline {
+      color: var(--dark);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Sale Banner */
+    .sale-banner {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .sale-banner::after {
+      content: "✨";
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Category Navigation */
+    .category-nav {
+      background-color: white;
+      padding: 12px 0;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      position: sticky;
+      top: 56px;
+      z-index: 90;
+    }
+    .category-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .category-link {
+      padding: 8px 18px;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border-radius: 20px;
+      margin: 0 4px;
+      font-size: 0.9rem;
+    }
+    .category-link:hover,
+    .category-link.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* Product Section */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .category-section {
+      margin-bottom: 60px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      margin: 15px auto 0;
+      border-radius: 3px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid #f0f0f0;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    }
+    .product-image-container {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+    }
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+    .wishlist-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    .wishlist-btn:hover {
+      color: white;
+      background: var(--primary);
+    }
+    .product-info {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 240px;
+    }
+    .product-name {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+      font-weight: 600;
+      min-height: 48px;
+    }
+    .product-price {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+      margin-right: 8px;
+      font-size: 0.9rem;
+    }
+    .discount-badge {
+      background-color: var(--secondary);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      margin-left: 8px;
+    }
+    .product-colors {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .color-option {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid #eee;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 10px rgba(203, 167, 255, 0.3);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(203, 167, 255, 0.4);
+    }
+    .btn-center {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .add-to-cart-btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      font-size: 0.8rem;
+    }
+    .buy-now-btn {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 0.8rem;
+      background: #5C2D91;
+      color: white;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+    }
+    .buy-now-btn:hover {
+      background: #4b1c84;
+    }
+
+    /* Product details */
+    .product-sizes {
+      margin: 10px 0;
+      font-size: 0.85rem;
+    }
+    .size-label {
+      font-weight: 600;
+      color: var(--dark);
+      margin-right: 5px;
+    }
+    .size-options {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .size-option {
+      padding: 2px 8px;
+      border: 1px solid var(--secondary);
+      border-radius: 3px;
+      font-size: 0.8rem;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .size-option:hover {
+      background-color: var(--accent);
+    }
+    .size-option.selected {
+      background-color: var(--secondary);
+      color: white;
+      border-color: var(--dark);
+    }
+    .product-description {
+      font-size: 0.8rem;
+      color: #666;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    .product-buttons {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 40px 30px;
+      margin-top: 70px;
+      position: relative;
+    }
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 1200 120\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\"><path d=\"M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z\" fill=\"%236B4F7D\" opacity=\".25\"/></svg>');
+      background-size: cover;
+      transform: rotate(180deg);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .footer-links a:hover {
+      opacity: 1;
+    }
+    .copyright {
+      opacity: 0.7;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+
+    /* Search Section */
+    .search-container {
+      max-width: 800px;
+      margin: 30px auto;
+      display: flex;
+      padding: 0 20px;
+    }
+    .search-box {
+      flex: 1;
+      padding: 12px 20px;
+      border: 1px solid var(--secondary);
+      border-radius: 30px 0 0 30px;
+      font-size: 1rem;
+      outline: none;
+    }
+    .search-btn {
+      padding: 0 25px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .search-btn:hover {
+      background: var(--dark);
+    }
+
+    /* Toast animation */
+    @keyframes fadeinout {
+        0% { opacity: 0; bottom: 20px; }
+        10% { opacity: 1; bottom: 30px; }
+        90% { opacity: 1; }
+        100% { opacity: 0; bottom: 40px; }
+    }
+    .account-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.account-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 1000;
+  padding: 10px 0;
+}
+.account-dropdown:hover .account-dropdown-content {
+  display: block;
+}
+.account-dropdown-content a {
+  color: var(--text);
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.account-dropdown-content a:hover {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+.account-dropdown-content a i {
+  margin-right: 10px;
+  width: 18px;
+  text-align: center;
+}
+.dropdown-divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 5px 0;
+}
+
+  .cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #FF4081;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 0.75rem;
+  }
+  .hidden {
+    display: none;
+  }
+
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+  <div class="logo-small">Mama's Nest</div>
+  <div class="nav-icons">
+    <a href="{{ url_for('dashboard') }}" title="Home"><i class="fas fa-home"></i></a>
+    <a href="{{ url_for('wishlist') }}" title="Wishlist"><i class="fas fa-heart"></i></a>
+    <a href="{{ url_for('cart') }}" title="Cart" style="position: relative;">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cart-count"
+      class="cart-badge {% if cart_count == 0 %}hidden{% endif %}">
+  {{ cart_count }}
+</span>
+
+    </a>
+
+    <!-- Account Dropdown -->
+    <div class="account-dropdown">
+      <a href="#" title="Account" class="account-trigger"><i class="fas fa-user"></i></a>
+      <div class="account-dropdown-content">
+        {% if session.get('user_id') %}
+          <a href="{{ url_for('my_account') }}"><i class="fas fa-user-circle"></i> My Account</a>
+          <a href="{{ url_for('orders') }}"><i class="fas fa-shopping-bag"></i> My Orders</a>
+          <a href="{{ url_for('settings') }}"><i class="fas fa-cog"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+          
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <header class="main-header">
+    <div class="logo">Mama's Comfort Shop</div>
+    <div class="tagline">Nurturing comfort for you and your little one on the way</div>
+  </header>
+
+  <nav class="category-nav">
+    <div class="category-container">
+      <a href="#all-products" class="category-link active">All Products</a>
+      {% for category in categorized_products %}
+        <a href="#{{ category|lower|replace(' ', '-') }}" class="category-link">{{ category }}</a>
+      {% endfor %}
+    </div>
+  </nav>
+
+  <div class="sale-banner">
+    Mother's Day Special: 50-70% Off Maternity Essentials
+  </div>
+
+  <div class="container">
+    <!-- All Products Section -->
+    <section id="all-products" class="category-section">
+      <h2 class="section-title">All Products</h2>
+      <div class="product-grid">
+        {% for product in all_products %}
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" class="product-image">
+            <form method="POST" action="{{ url_for('add_to_wishlist') }}">
+              <input type="hidden" name="name" value="{{ product.name }}">
+              <button type="submit" class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </form>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <p class="product-price">₹{{ product.price }}</p>
+            {% if product.sizes %}<p><strong>Sizes:</strong> {{ product.sizes }}</p>{% endif %}
+            {% if product.material %}<p><strong>Material:</strong> {{ product.material }}</p>{% endif %}
+            <form class="add-to-cart-form" data-name="{{ product.name }}">
+  <button type="submit" class="btn add-to-cart-btn">Add to Cart</button>
+</form>
+
+            <form method="POST" action="{{ url_for('buy_now') }}">
+              <input type="hidden" name="name" value="{{ product.name }}">
+              <button type="submit" class="btn buy-now-btn">Buy Now</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Category Sections -->
+    {% for category, products in categorized_products.items() %}
+    <section id="{{ category|lower|replace(' ', '-') }}" class="category-section">
+      <h2 class="section-title">{{ category }}</h2>
+      <div class="product-grid">
+        {% for product in products %}
+          {% if view_all_category == category or loop.index <= 4 %}
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" class="product-image">
+              <form method="POST" action="{{ url_for('add_to_wishlist') }}">
+                <input type="hidden" name="name" value="{{ product.name }}">
+                <button type="submit" class="wishlist-btn"><i class="far fa-heart"></i></button>
+              </form>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">{{ product.name }}</h3>
+              <p class="product-price">₹{{ product.price }}</p>
+              {% if product.sizes %}<p><strong>Sizes:</strong> {{ product.sizes }}</p>{% endif %}
+              {% if product.material %}<p><strong>Material:</strong> {{ product.material }}</p>{% endif %}
+              
+<form class="add-to-cart-form" data-name="{{ product.name }}">
+  <button type="submit" class="btn add-to-cart-btn">Add to Cart</button>
+</form>
+              <form method="POST" action="{{ url_for('buy_now') }}">
+                <input type="hidden" name="name" value="{{ product.name }}">
+                <button type="submit" class="btn buy-now-btn">Buy Now</button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% if view_all_category != category %}
+      <div class="btn-center">
+        <a href="{{ url_for('ecommerce') }}?view_all={{ category }}#{{ category|lower|replace(' ', '-') }}" class="btn">View All {{ category }}</a>
+      </div>
+      {% endif %}
+    </section>
+    {% endfor %}
+  </div>
+
+  <footer class="footer">
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 50px; max-width: 1200px; margin: 0 auto; padding: 30px 20px; text-align: left;">
+
+    <div style="flex: 1; min-width: 250px;">
+      <h4 style="color: #F3E8FF; font-size: 1.2rem; margin-bottom: 8px;">📦 Shipping</h4>
+      <p style="color: #fdfbff; font-size: 0.95rem;">We ship pan India within <strong>7 working days</strong> of order placement. Track your delivery status from your account.</p>
+    </div>
+
+    <div style="flex: 1; min-width: 250px;">
+      <h4 style="color: #F3E8FF; font-size: 1.2rem; margin-bottom: 8px;">🚫 Returns & Exchanges</h4>
+      <p style="color: #fdfbff; font-size: 0.95rem;">For hygiene reasons, we <strong>do not accept returns or exchanges</strong>. Kindly double-check sizes and details before placing an order.</p>
+    </div>
+
+    <div style="flex: 1; min-width: 250px;">
+      <h4 style="color: #F3E8FF; font-size: 1.2rem; margin-bottom: 8px;">📬 Contact Us</h4>
+      <p style="color: #fdfbff; font-size: 0.95rem;">
+        Email: <a href="mailto:support@mamasnest.in" style="color: #e0c9ff;">support@mamasnest.in</a><br>
+        Phone: +91 98765 43210<br>
+        Hours: Mon–Sat, 10:00 AM – 6:00 PM
+      </p>
+    </div>
+  </div>
+
+  <div class="copyright" style="margin-top: 25px; opacity: 0.75;">
+    &copy; 2023 Mama's Nest. All rights reserved. | Nurturing mothers since 2020
+  </div>
+</footer>
+
+
+
+  <script>
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.innerText = message;
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #5C2D91;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      font-weight: bold;
+      z-index: 9999;
+      animation: fadeinout 3s ease;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => document.body.removeChild(toast), 3000);
+  }
+
+  function updateCartCount(count) {
+    const badge = document.getElementById('cart-count');
+    badge.innerText = count;
+    badge.style.display = count > 0 ? 'inline-block' : 'none';
+  }
+
+  document.querySelectorAll('.add-to-cart-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = form.getAttribute('data-name');
+
+      fetch('/add_to_cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ name: name })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          updateCartCount(data.cart_count);
+          showToast(`✅ "${name}" added to cart`);
+        } else {
+          alert("Error adding to cart");
+        }
+      });
+    });
+  });
+</script>
+<script>
+function updateCartCount(count) {
+    const badge = document.getElementById('cart-count');
+    badge.innerText = count;
+    badge.style.display = count > 0 ? 'inline-block' : 'none';
+}
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.innerText = message;
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #5C2D91;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        font-weight: bold;
+        z-index: 9999;
+        opacity: 0;
+        animation: fadeinout 3s ease;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => document.body.removeChild(toast), 3000);
+}
+
+document.querySelectorAll('.add-to-cart-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = form.getAttribute('data-name');
+
+        fetch('/add_to_cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ name: name })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                updateCartCount(data.cart_count);
+                showToast(`✅ "${name}" added to cart`);
+            } else {
+                alert("Error adding to cart");
+            }
+        });
+    });
+});
+</script>
+
+<style>
+@keyframes fadeinout {
+    0% { opacity: 0; bottom: 20px; }
+    10% { opacity: 1; bottom: 30px; }
+    90% { opacity: 1; }
+    100% { opacity: 0; bottom: 40px; }
+}
+</style>
+
+
+</body>
+</html>

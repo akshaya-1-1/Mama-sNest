@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout - Mama's Nest</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f3e5f5;
+      margin: 0;
+    }
+    .top-nav {
+      background: #B57EDC;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-nav .logo-small {
+      color: white;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+    .top-nav .nav-icons a {
+      color: white;
+      font-size: 1.2rem;
+      margin-left: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #5C2D91;
+      margin-top: 30px;
+    }
+    .checkout-container {
+      max-width: 700px;
+      margin: auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    .checkout-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .checkout-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+    .checkout-details {
+      flex: 1;
+    }
+    .checkout-name {
+      font-weight: bold;
+      color: #392B5D;
+    }
+    .checkout-price {
+      color: #7e57c2;
+      font-weight: bold;
+    }
+    .total-amount {
+      text-align: right;
+      font-size: 1.2rem;
+      color: #5C2D91;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .place-order-btn {
+      width: 100%;
+      padding: 15px;
+      background: #7e57c2;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      margin-top: 25px;
+      cursor: pointer;
+    }
+    .place-order-btn:hover {
+      background: #5C2D91;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="logo-small">Mama's Nest</div>
+  <div class="nav-icons">
+    <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i></a>
+    <a href="{{ url_for('wishlist') }}"><i class="fas fa-heart"></i></a>
+    <a href="{{ url_for('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+</div>
+
+<h2>Checkout</h2>
+
+<div class="checkout-container">
+  {% for item in cart_items %}
+  <div class="checkout-item">
+    <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+    <div class="checkout-details">
+  <div class="checkout-name">{{ item.name }}</div>
+  {% if item.description %}
+    <div style="font-size: 0.85rem; color: #555;">{{ item.description }}</div>
+  {% endif %}
+  <div style="font-size: 0.85rem; color: #555;">Size: Free Size</div>
+  {% if item.material %}
+    <div style="font-size: 0.85rem; color: #555;">Material: {{ item.material }}</div>
+  {% endif %}
+  <div class="checkout-price">₹{{ item.price }}</div>
+</div>
+
+      
+  </div>
+  {% endfor %}
+
+  <div class="total-amount">Total: ₹{{ total }}</div>
+
+  <form method="POST" action="{{ url_for('payment') }}">
+    <button type="submit" class="place-order-btn">Place Order</button>
+  </form>
+</div>
+
+</body>
+</html>

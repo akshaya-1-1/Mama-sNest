@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Doctors | Admin - Mama's Nest</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff9fd;
+      color: #4b2b63;
+    }
+
+    header {
+      background: linear-gradient(to right, #dcbdf6, #f3e6fc);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: #5a3c75;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #732b9d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f6ebfc;
+      color: #4b2b63;
+    }
+
+    tr:hover {
+      background-color: #f9f2fc;
+    }
+
+    .action-btn {
+      padding: 5px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      margin-right: 5px;
+    }
+
+    .verify-btn {
+      background-color: #d4f8e8;
+      color: #207d4c;
+    }
+
+    .delete-btn {
+      background-color: #ffb3b3;
+      color: #900;
+    }
+
+    .disable-btn {
+      background-color: #fddede;
+      color: #b45f06;
+    }
+
+    .enable-btn {
+      background-color: #c6f6c6;
+      color: #066e1d;
+    }
+
+    .license-link {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
+    a.no-underline {
+  text-decoration: none !important;
+  color: inherit;
+  font-weight: 600;
+}
+
+a.no-underline:hover {
+  text-decoration: underline;
+  color: #6a1b9a;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Manage Doctors</h1>
+    <nav>
+      <a href="/admin-dashboard">Home</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Registered Doctors</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>License</th>
+          <th>Verified</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for doctor in doctors %}
+        <tr>
+          <td>{{ doctor.id }}</td>
+          <td><a href="{{ url_for('view_doctor_profile', doctor_id=doctor.id) }}" class="no-underline">{{ doctor.name }}</a></td>
+
+
+          <td>{{ doctor.email }}</td>
+          <td>
+            {% if doctor.license_path %}
+              <a href="{{ url_for('static', filename='uploads/' ~ doctor.license_path) }}" target="_blank" class="license-link">View</a>
+            {% else %}
+              Not Uploaded
+            {% endif %}
+          </td>
+          <td>{{ 'Verified' if doctor.is_verified else 'Not Verified' }}</td>
+          <td>{{ doctor.status | capitalize }}</td>
+          <td>
+            {% if not doctor.is_verified %}
+              <a href="{{ url_for('verify_doctor', doctor_id=doctor.id) }}" class="action-btn verify-btn">Verify</a>
+            {% endif %}
+            {% if doctor.status == 'active' %}
+              <a href="{{ url_for('disable_doctor', doctor_id=doctor.id) }}" class="action-btn disable-btn">Disable</a>
+            {% else %}
+              <a href="{{ url_for('enable_doctor', doctor_id=doctor.id) }}" class="action-btn enable-btn">Enable</a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

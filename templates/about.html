@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us | Mama's Nest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background-color: #fefaff;
+      color: #4b375a;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      padding: 25px 40px;
+      background: linear-gradient(to right, #caa1dd, #e9d7f4);
+      background-image: url('/static/banner-flowers.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid #e6cdeb;
+      height: 90px;
+    }
+
+    .header-left {
+      position: absolute;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 34px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #4b2b63;
+      font-weight: bold;
+    }
+
+    .header-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      font-family: 'Georgia', serif;
+      color: #7d4b91;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        height: auto;
+        padding: 30px 20px;
+        text-align: center;
+      }
+
+      .header-left, .header-center {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+    }
+
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .card {
+      background: linear-gradient(to top, #fdf7ff, #f9ecff);
+      border: 1px solid #e4ccef;
+      border-radius: 12px;
+      padding: 25px;
+      flex: 1 1 calc(48% - 20px);
+      box-shadow: 0 4px 12px rgba(174, 145, 191, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(170, 122, 198, 0.2);
+    }
+
+    .card h3 {
+      color: #7e3d97;
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .card ul li {
+      margin-bottom: 8px;
+    }
+
+    .signature {
+      margin-top: 60px;
+      text-align: center;
+      font-style: italic;
+      color: #6b4c7c;
+      font-size: 1.1em;
+    }
+
+    .testimonial {
+      text-align: center;
+      margin-top: 60px;
+      background-color: #f9f2fb;
+      padding: 40px 20px;
+      border-radius: 10px;
+      font-style: italic;
+      color: #5a3a6c;
+      box-shadow: 0 4px 12px rgba(174, 145, 191, 0.1);
+    }
+
+    .testimonial blockquote {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #f2e8f7;
+      color: #7d6488;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        flex-direction: column;
+      }
+
+      .card {
+        flex: 1 1 100%;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+.back-link {
+  padding: 20px 40px 0;
+  font-size: 16px;
+}
+
+.back-link a {
+  text-decoration: none;
+  color: #a75d9b;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+  color: #843e94;
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">Mama's Nest</div>
+    <div class="header-center">About Mama's Nest</div>
+  </header>
+
+  <div class="back-link">
+    <a href="{{ url_for('dashboard') }}">← Back to Home</a>
+  </div>
+  
+
+  <div class="container">
+    <div class="grid">
+      <div class="card">
+        <h3>🌼 Who We Are</h3>
+        <p>
+          We are a team of passionate minds united by a mission — to create a nurturing space where technology meets tenderness.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🧡 What We Offer</h3>
+        <ul>
+          <li>🤰 Pregnancy tracker & calendar</li>
+          <li>👩‍⚕️ Doctor appointment booking</li>
+          <li>📩 Personalized tips</li>
+          <li>💬 Forum to explore</li>
+          <li>🛍️ Maternity essentials in one place</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🌟 Our Vision</h3>
+        <p>
+          To become a calming digital “nest” where every mom-to-be feels empowered, 
+          informed, and never alone.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🔒 Our Promise</h3>
+        <p>
+          Your well-being and privacy are at the heart of what we do.  
+          Mama’s Nest is crafted with security, trust, and a whole lot of care.
+        </p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <blockquote>
+        “Mama’s Nest helped me feel calm, informed, and confident throughout my pregnancy.
+        I couldn’t imagine this journey without it.”
+      </blockquote>
+      <p>– A Happy Mama 🥰</p>
+    </div>
+
+    <p class="signature">
+      With love and gratitude,  
+      <br><strong>– The Mama's Nest Team 💜</strong>
+    </p>
+  </div>
+
+  <footer>
+    &copy; 2025 Mama's Nest — All rights reserved 💜
+  </footer>
+
+</body>
+</html>

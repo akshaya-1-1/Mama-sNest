@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Wellness Content | Admin</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8ff;
+      color: #392a4e;
+    }
+    header {
+      background: linear-gradient(to right, #c084f5, #e8d4f8);
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 34px;
+      color: #3e1959;
+    }
+    nav a {
+      margin: 0 12px;
+      color: #3e1959;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #5d1e7d;
+    }
+    .section {
+      margin-bottom: 50px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .section h3 {
+      font-size: 22px;
+      color: #6d2b91;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .add-btn {
+      background-color: #9f5de2;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .add-btn:hover {
+      background-color: #822ec1;
+    }
+    .wellness-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0 0;
+    }
+    .wellness-list li {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f9f2fc;
+      border-left: 4px solid #ba7ae4;
+      border-radius: 8px;
+    }
+    .wellness-list img,
+    .wellness-list video,
+    .wellness-list audio {
+      max-width: 200px;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+    .wellness-list .actions {
+      margin-top: 10px;
+    }
+    .wellness-list .actions button {
+      margin-right: 8px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .edit-btn {
+      background-color: #ffd966;
+    }
+    .delete-btn {
+      background-color: #f67280;
+      color: white;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      background: #f7e9fb;
+      font-size: 14px;
+      color: #6a4d82;
+    }
+  </style>
+  <script>
+    function goTo(el) {
+      window.location.href = el.getAttribute('data-url');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Manage Wellness Content</h1>
+    <nav>
+      <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Wellness Content Library</h2>
+
+    <div class="section">
+      <h3>📚 E-Books <button class="add-btn" onclick="goTo(this)" data-url="{{ url_for('add_ebook') }}">+ Add New</button></h3>
+      <ul class="wellness-list">
+        {% for ebook in ebooks %}
+          <li>
+            <strong>{{ ebook.title }}</strong>
+            <p>{{ ebook.description }}</p>
+            {% if ebook.image_path %}
+              <img src="{{ url_for('static', filename=ebook.image_path) }}" alt="Ebook Cover">
+            {% endif %}
+            <div>{{ ebook.content }}</div>
+            <small>Uploaded: {{ ebook.uploaded_at }}</small>
+            <div class="actions">
+              <button class="edit-btn" onclick="goTo(this)" data-url="{{ url_for('edit_ebook', ebook_id=ebook.id) }}">Edit</button>
+              <form action="{{ url_for('delete_ebook', ebook_id=ebook.id) }}" method="post" style="display:inline;">
+  <button type="submit" onclick="return confirm('Delete this e-book?')">Delete</button>
+</form>
+            </div>
+          </li>
+        {% else %}
+          <li>No e-books uploaded yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🏃‍♀️ Exercise Videos <button class="add-btn" onclick="goTo(this)" data-url="{{ url_for('add_exercise') }}">+ Add New</button></h3>
+      <ul class="wellness-list">
+        {% for ex in exercises %}
+          <li>
+            <strong>{{ ex.title }}</strong> ({{ ex.trimester }})
+            <p>{{ ex.description }}</p>
+            {% if ex.video_path %}
+              <video controls>
+                <source src="{{ url_for('static', filename=ex.video_path) }}">
+              </video>
+            {% endif %}
+            <small>Uploaded: {{ ex.uploaded_at }}</small>
+            <div class="actions">
+              <button class="edit-btn" onclick="goTo(this)" data-url="{{ url_for('edit_exercise', video_id=ex.id) }}">Edit</button>
+              <form action="{{ url_for('delete_exercise', video_id=ex.id) }}" method="post" style="display:inline;">
+  <button type="submit" onclick="return confirm('Delete this exercise video?')">Delete</button>
+</form>
+            </div>
+          </li>
+        {% else %}
+          <li>No exercise videos uploaded yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🎵 Music Tracks <button class="add-btn" onclick="goTo(this)" data-url="{{ url_for('add_music') }}">+ Add New</button></h3>
+      <ul class="wellness-list">
+        {% for track in music %}
+          <li>
+            <strong>{{ track.title }}</strong>
+            <p>{{ track.description }}</p>
+            {% if track.audio_path %}
+              <audio controls>
+                <source src="{{ url_for('static', filename=track.audio_path) }}">
+              </audio>
+            {% endif %}
+            <small>Uploaded: {{ track.uploaded_at }}</small>
+            <div class="actions">
+              <button class="edit-btn" onclick="goTo(this)" data-url="{{ url_for('edit_music', music_id=track.id) }}">Edit</button>
+              <form action="{{ url_for('delete_music', music_id=track.id) }}" method="post" style="display:inline;">
+  <button type="submit" onclick="return confirm('Delete this music track?')">Delete</button>
+</form>
+            </div>
+          </li>
+        {% else %}
+          <li>No music tracks uploaded yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 Mama's Nest — Admin Panel 💜
+  </footer>
+</body>
+</html>

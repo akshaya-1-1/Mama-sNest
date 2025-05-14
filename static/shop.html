@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamas Nest - Maternity Essentials</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background-color: #fff5f9;
+            padding: 30px 0;
+            text-align: center;
+        }
+        .logo {
+            font-size: 2.8rem;
+            color: #e83b8e;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* Sale Banner */
+        .sale-banner {
+            background: linear-gradient(135deg, #e83b8e, #ff6b9d);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 50px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #e83b8e;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #ffb6d9;
+            margin: 15px auto;
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-name {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .product-price {
+            font-weight: 700;
+            color: #e83b8e;
+            font-size: 1.2rem;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-right: 8px;
+        }
+        .discount-badge {
+            background: #ff4081;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: #e83b8e;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn:hover {
+            background: #c42d7b;
+            transform: translateY(-2px);
+        }
+        .btn-center {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            background: #f9f9f9;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .search-box {
+            width: 60%;
+            max-width: 600px;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+        }
+        .search-btn {
+            background: #e83b8e;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="logo">Mama's Nest</div>
+        <div class="tagline">Comfort & Style for Your Pregnancy Journey</div>
+    </header>
+    
+    <!-- Sale Banner -->
+    <div class="sale-banner">
+        50-70% Off Maternity Essentials
+    </div>
+    
+    <div class="container">
+        <!-- Maternity Wear Section -->
+        <section class="category-section">
+            <h2 class="section-title">Maternity Wear</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="casualdress1.jpg" alt="Maternity Dress" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Floral Wrap Maternity Dress</h3>
+                        <div>
+                            <span class="original-price">$59.99</span>
+                            <span class="product-price">$41.99</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="casualdress2.jpg" alt="Maternity Dress" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Stretchy Knit Maxi Dress</h3>
+                        <div>
+                            <span class="original-price">$64.99</span>
+                            <span class="product-price">$45.49</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="casualdress3.jpg" alt="Maternity Dress" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Denim Shirred Maternity Dress</h3>
+                        <div class="product-price">$49.99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="casualdress4.jpg" alt="Maternity Dress" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Ruffled Sleeve Tiered Dress</h3>
+                        <div>
+                            <span class="original-price">$54.99</span>
+                            <span class="product-price">$38.49</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-center">
+                <a href="#" class="btn">View All Maternity Wear</a>
+            </div>
+        </section>
+        
+        <!-- Maternity Pillows Section -->
+        <section class="category-section">
+            <h2 class="section-title">Maternity Pillows</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="casualdress5.jpg" alt="Maternity Pillow" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Full Body Pregnancy Pillow</h3>
+                        <div>
+                            <span class="original-price">$89.99</span>
+                            <span class="product-price">$62.99</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="casualdress6.jpg" alt="Maternity Pillow" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Wedge Support Pillow</h3>
+                        <div class="product-price">$29.99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="casualdress7.jpg" alt="Maternity Pillow" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">C-Shaped Maternity Pillow</h3>
+                        <div>
+                            <span class="original-price">$79.99</span>
+                            <span class="product-price">$55.99</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="casualdress8.jpg" alt="Maternity Pillow" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">U-Shaped Body Pillow</h3>
+                        <div class="product-price">$69.99</div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-center">
+                <a href="#" class="btn">View All Maternity Pillows</a>
+            </div>
+        </section>
+        
+        <!-- Maternity Essentials Section -->
+        <section class="category-section">
+            <h2 class="section-title">Maternity Essentials</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="casualdress9.jpg" alt="Maternity Essential" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Nursing Bra 3-Pack</h3>
+                        <div>
+                            <span class="original-price">$49.99</span>
+                            <span class="product-price">$34.99</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="casualdress10.jpg" alt="Maternity Essential" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Belly Support Band</h3>
+                        <div class="product-price">$39.99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="casualdress10.jpg" alt="Maternity Essential" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Postpartum Recovery Kit</h3>
+                        <div>
+                            <span class="original-price">$59.99</span>
+                            <span class="product-price">$41.99</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="casualdress10.jpg" alt="Maternity Essential" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Maternity Leggings</h3>
+                        <div class="product-price">$34.99</div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-center">
+                <a href="#" class="btn">View All Essentials</a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Search Section -->
+    <div class="search-container">
+        <input type="text" placeholder="Search for maternity wear, pillows, and more..." class="search-box">
+        <button class="search-btn">Search</button>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 Mama's Nest. All rights reserved.</p>
+    </footer>
+</body>
+</html>

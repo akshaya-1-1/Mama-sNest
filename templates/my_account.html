@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Account | Mama's Nest</title>
+  <style>
+    body { background: #f6edfa; color: #392b5d; font-family: 'Nunito', 'Poppins', sans-serif; min-height: 100vh; margin: 0; }
+    nav { background: #b57edc; padding: 18px 36px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(90, 60, 120, 0.07);}
+    nav .brand { color: #fff; font-weight: 700; font-size: 1.4rem; letter-spacing: 1px;}
+    nav a { color: #fff; text-decoration: none; margin-left: 18px; font-size: 1rem; transition: color 0.2s;}
+    nav a:hover { color: #f3e8ff;}
+    .container { max-width: 600px; margin: 40px auto; padding: 0 20px;}
+    h2 { color: #7c3aed; font-size: 2.2rem; font-weight: 800; margin-bottom: 28px; display: flex; align-items: center; gap: 10px;}
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 4px 18px rgba(90, 60, 120, 0.08); padding: 32px; margin-bottom: 32px;}
+    .card h3 { font-size: 1.3rem; color: #5c2d91; margin-bottom: 12px; font-weight: 700;}
+    .card p { margin: 6px 0; font-size: 1rem;}
+    .actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px;}
+    .actions a { background: #f3e8ff; color: #7c3aed; border-radius: 6px; padding: 8px 18px; text-decoration: none; font-size: 0.98rem; font-weight: 600; text-align: center; transition: background 0.2s, color 0.2s;}
+    .actions a:hover { background: #d8b4f8; color: #392b5d;}
+    @media (max-width: 600px) { .container { padding: 0 6px; } .card { padding: 18px; } h2 { font-size: 1.3rem; } }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</head>
+<body>
+  <nav>
+    <div class="brand">Mama's Nest</div>
+    <div>
+      <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> Home</a>
+      <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h2><span>👩‍🍼</span> My Account</h2>
+    <div class="card">
+      <h3>Account Info</h3>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Phone:</strong> {{ user.phone or 'Not set' }}</p>
+      <p><strong>Address:</strong> {{ user.address or 'Not set' }}</p>
+      <div class="actions">
+        <a href="{{ url_for('settings') }}"><i class="fas fa-cog"></i> Edit Profile</a>
+        <a href="{{ url_for('settings') }}#password"><i class="fas fa-key"></i> Change Password</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

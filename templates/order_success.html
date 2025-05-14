@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Confirmed</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #FAF5FF;
+      text-align: center;
+      padding: 100px 30px;
+      color: #392B5D;
+    }
+    .box {
+      background: white;
+      display: inline-block;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #5C2D91;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Thank You, {{ name }}!</h2>
+    <p>Your order was placed successfully.</p>
+    <p>Payment Method: <strong>{{ method|title }}</strong></p>
+    <p>We will process and ship your order shortly!</p>
+  </div>
+</body>
+</html>
